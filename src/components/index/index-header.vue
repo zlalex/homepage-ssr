@@ -18,7 +18,6 @@ export default {};
   justify-content: space-between;
   align-items: center;
   padding: 0 vw(40);
-  font-size: vw(20);
   background-color: #fff;
   .index-header-logo,
   .index-header-menu {
@@ -32,6 +31,17 @@ export default {};
   .index-header-menu {
     width: vw(36);
     height: vw(24);
+  }
+  @include layout-desktop-only {
+    padding: 0 vw(160);
+    .index-header-logo {
+      width: vw(108);
+      height: vw(33);
+    }
+    .index-header-menu {
+      width: vw(36);
+      height: vw(24);
+    }
   }
 }
 </style>

@@ -1,6 +1,6 @@
-@import './variable';
+@import "./variable";
 
-$large-width: $desktop-large-desktop-breakpoint;
+$large-width: $ui-width-desktop;
 
 @function vw($px) {
   @return ($px / $ui-width-mobile) * 100vw;

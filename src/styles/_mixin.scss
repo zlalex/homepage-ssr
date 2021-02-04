@@ -5,13 +5,13 @@
 }
 
 @mixin layout-mobile-only {
-  @media (max-width: $mobile-tablet-breakpoint - 1px) {
+  @media (max-width: $mobile-tablet-breakpoint) {
     @content;
   }
 }
 
 @mixin layout-desktop-only {
-  @media (min-width: $mobile-tablet-breakpoint) {
+  @media screen and (min-width: $mobile-tablet-breakpoint) {
     @content;
   }
 }
@@ -23,7 +23,7 @@
 }
 
 @mixin layout-tablet-only {
-  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $tablet-desktop-breakpoint - 1px) {
+  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $tablet-desktop-breakpoint) {
     @content;
   }
 }
@@ -35,7 +35,7 @@
 }
 
 @mixin layout-desktop-only {
-  @media (min-width: $tablet-desktop-breakpoint) and (max-width: $desktop-large-desktop-breakpoint - 1px) {
+  @media (min-width: $tablet-desktop-breakpoint) and (max-width: $desktop-large-desktop-breakpoint) {
     @content;
   }
 }
@@ -53,19 +53,19 @@
 }
 
 @mixin layout-mobile-tablet-only {
-  @media (max-width: $tablet-desktop-breakpoint - 1px) {
+  @media (max-width: $tablet-desktop-breakpoint) {
     @content;
   }
 }
 
 @mixin layout-mobile-tablet-desktop-only {
-  @media (max-width: $desktop-large-desktop-breakpoint - 1px) {
+  @media (max-width: $desktop-large-desktop-breakpoint) {
     @content;
   }
 }
 
 @mixin layout-tablet-desktop-only {
-  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $desktop-large-desktop-breakpoint - 1px) {
+  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $desktop-large-desktop-breakpoint) {
     @content;
   }
 }
