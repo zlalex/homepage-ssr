@@ -1,4 +1,4 @@
-@import './variable';
+@import "./variable";
 
 @mixin layout-mobile {
   @content;
@@ -6,6 +6,12 @@
 
 @mixin layout-mobile-only {
   @media (max-width: $mobile-tablet-breakpoint - 1px) {
+    @content;
+  }
+}
+
+@mixin layout-desktop-only {
+  @media (min-width: $mobile-tablet-breakpoint) {
     @content;
   }
 }
@@ -64,6 +70,7 @@
   }
 }
 
+// 等同于 layout-desktop-only
 @mixin layout-tablet-desktop-large-desktop-only {
   @media (min-width: $mobile-tablet-breakpoint) {
     @content;
@@ -76,11 +83,7 @@
   }
 }
 
-@mixin layout-responsive($property,
-  $mobile: null,
-  $tablet: null,
-  $desktop: null,
-  $large-desktop: null) {
+@mixin layout-responsive($property, $mobile: null, $tablet: null, $desktop: null, $large-desktop: null) {
   @if ($mobile) {
     @include layout-mobile {
       #{$property}: $mobile;

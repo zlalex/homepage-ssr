@@ -1,7 +1,13 @@
-@import './entry';
+@import "./entry";
 
 .layout-mobile-only {
   @include layout-tablet-desktop-large-desktop-only {
+    display: none !important;
+  }
+}
+
+.layout-desktop-only {
+  @include layout-mobile-only {
     display: none !important;
   }
 }
