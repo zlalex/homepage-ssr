@@ -35,10 +35,10 @@ export default {
     z-index: 100;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   }
-  @include layout-desktop-only {
-    padding-top: vw2(70);
+  @include layout-desktop-full {
+    padding-top: px2vw(70);
     .index-fixed-header {
-      height: vw2(70);
+      height: px2vw(70);
     }
   }
 }

@@ -6,7 +6,7 @@
   }
 }
 
-.layout-desktop-only {
+.layout-desktop-full {
   @include layout-mobile-only {
     display: none !important;
   }

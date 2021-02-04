@@ -10,8 +10,8 @@
   }
 }
 
-@mixin layout-desktop-only {
-  @media screen and (min-width: $mobile-tablet-breakpoint) {
+@mixin layout-desktop-full {
+  @media (min-width: $mobile-tablet-breakpoint) {
     @content;
   }
 }
@@ -70,7 +70,7 @@
   }
 }
 
-// 等同于 layout-desktop-only
+// 等同于 layout-desktop-full
 @mixin layout-tablet-desktop-large-desktop-only {
   @media (min-width: $mobile-tablet-breakpoint) {
     @content;

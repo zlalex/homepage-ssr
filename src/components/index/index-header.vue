@@ -32,15 +32,15 @@ export default {};
     width: vw(36);
     height: vw(24);
   }
-  @include layout-desktop-only {
-    padding: 0 vw(160);
+  @include layout-desktop-full {
+    padding: 0 px2vw(160);
     .index-header-logo {
-      width: vw(108);
-      height: vw(33);
+      width: px2vw(108);
+      height: px2vw(33);
     }
     .index-header-menu {
-      width: vw(36);
-      height: vw(24);
+      width: px2vw(36);
+      height: px2vw(24);
     }
   }
 }

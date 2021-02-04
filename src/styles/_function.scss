@@ -1,11 +1,9 @@
 @import "./variable";
 
-$large-width: $ui-width-desktop;
-
 @function vw($px) {
   @return ($px / $ui-width-mobile) * 100vw;
 }
 
-@function vw2($px) {
-  @return ($px / $large-width) * 100vw;
+@function px2vw($px) {
+  @return ($px / $ui-width-desktop) * 100vw;
 }
