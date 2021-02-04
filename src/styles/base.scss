@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.no-scroll {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .inner-scroll {
+    width: calc(100vw + 20px);
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  .view-page {
+    width: 100vw;
+  }
+}

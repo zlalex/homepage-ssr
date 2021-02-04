@@ -1,0 +1,37 @@
+.util- {
+  &#{cursor-} {
+    &#{pointer} {
+      cursor: pointer;
+
+      &#{-underline} {
+        cursor: pointer;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &#{default} {
+      cursor: default;
+      text-decoration: none;
+    }
+  }
+
+  &#{display-} {
+    &#{none} {
+      display: none;
+    }
+
+    &#{flex} {
+      display: flex;
+    }
+  }
+
+  &#{text-} {
+    &#{center} {
+      text-align: center;
+    }
+  }
+}
