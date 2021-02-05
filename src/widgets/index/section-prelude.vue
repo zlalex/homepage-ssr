@@ -12,14 +12,21 @@
 </template>
 <style lang="scss">
 .widget-index-section-prelude {
-  margin-top: vw(60);
-  padding: 0 vw(40);
+  margin: vw(60) vw(40) 0;
   position: relative;
+  @include layout-desktop-full {
+    margin: px2vw(100) px2vw(97) 0 px2vw(450);
+  }
   .section-prelude-context {
     position: absolute;
     top: vw(225);
-    left: vw(120);
+    left: vw(80);
     width: vw(508);
+    @include layout-desktop-full {
+      top: px2vw(318);
+      left: px2vw(185);
+      width: px2vw(700);
+    }
   }
   .prelude-text {
     text-align: justify;
@@ -27,6 +34,11 @@
     margin-bottom: vw(16);
     font-size: vw(20);
     line-height: vw(40);
+    @include layout-desktop-full {
+      margin-bottom: px2vw(24);
+      font-size: px2vw(16);
+      line-height: px2vw(32);
+    }
     &:last-of-type {
       margin-bottom: 0;
     }
