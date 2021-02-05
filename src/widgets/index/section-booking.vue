@@ -103,9 +103,9 @@ export default {
     color: #ffffff;
   }
   .booking-tip {
-      margin-top: vw(28);
-      text-align: center;
-      line-height: 1;
+    margin-top: vw(28);
+    text-align: center;
+    line-height: 1;
     color: #959595;
     font-size: vw(16);
   }
