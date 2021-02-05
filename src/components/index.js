@@ -3,6 +3,7 @@ import ComponentIcon from './icon.vue'
 import ComponentColorfulText from './colorful-text.vue'
 import ComponentViewPage from './view-page.vue'
 import ComponentViewSection from './view-section.vue'
+import ComponentInfoInput from './info-input.vue'
 import ComponentTextColumns from './text-columns.vue'
 
 export default [
@@ -11,5 +12,6 @@ export default [
   ComponentColorfulText,
   ComponentViewPage,
   ComponentViewSection,
+  ComponentInfoInput,
   ComponentTextColumns
 ]
