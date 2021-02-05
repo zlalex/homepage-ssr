@@ -2,9 +2,9 @@
   <!-- 热装盘 -->
   <div class="widget-index-section-building">
     <div class="widget-building-content">
-      <colorful-text class="util-text-center building-title"
-        >国际风尚</colorful-text
-      >
+      <colorful-text class="util-text-center building-title">
+        国际风尚
+      </colorful-text>
       <p class="util-text-center building-text">新春第一展，</p>
       <p class="util-text-center building-text">送您的是别墅里的经典与永恒。</p>
       <p class="util-text-center building-info">
@@ -25,7 +25,15 @@
       </div>
       <al-image src="./images/section-building-bg.png"></al-image>
     </div>
-    <al-image src="./images/section-building.png"></al-image>
+
+    <div class="building-list">
+      <div class="building-list-description">
+        <p class="description-text">焕，焕发精彩，</p>
+        <p class="description-text">做全小区最靓的宅。</p>
+        <p class="description-minify">甬城名宅，设计师一对一专属方案解析。</p>
+      </div>
+      <al-image src="./images/section-building.png"></al-image>
+    </div>
   </div>
 </template>
 
@@ -91,6 +99,32 @@
       border: 1px solid #d52c3f;
       border-radius: vw(18);
     }
+  }
+  .building-list {
+    position: relative;
+  }
+  .building-list-description {
+    position: absolute;
+    left: 50%;
+    top: vw(216);
+    width: 80%;
+    transform: translateX(-50%);
+  }
+  .description-text,
+  .description-minify {
+    color: #fff;
+    text-align: center;
+  }
+  .description-text {
+    font-size: vw(48);
+    font-weight: bold;
+    line-height: vw(52);
+  }
+
+  .description-minify {
+    margin-top: vw(40);
+    font-size: vw(20);
+    line-height: vw(20);
   }
 }
 </style>

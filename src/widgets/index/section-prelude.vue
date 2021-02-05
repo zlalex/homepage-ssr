@@ -12,22 +12,21 @@
 </template>
 <style lang="scss">
 .widget-index-section-prelude {
-  padding-top: vw(60);
+  margin-top: vw(60);
+  padding: 0 vw(40);
   position: relative;
   .section-prelude-context {
     position: absolute;
-    top: vw(290);
-    left: 50%;
-    transform: translateX(-50%);
+    top: vw(225);
+    left: vw(120);
     width: vw(508);
   }
   .prelude-text {
     text-align: justify;
     color: #727272;
-    margin-bottom: vw(20);
+    margin-bottom: vw(16);
     font-size: vw(20);
     line-height: vw(40);
-    letter-spacing: vw(2);
     &:last-of-type {
       margin-bottom: 0;
     }
