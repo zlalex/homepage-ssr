@@ -1,6 +1,6 @@
 <template>
   <!-- 序幕 -->
-  <div class="widget-index-section-prelude">
+  <al-section class="widget-index-section-prelude">
     <div class="section-prelude-context">
       <p class="prelude-text">时尚仿佛一个轮回，经典总在重复。</p>
       <p class="prelude-text">
@@ -8,7 +8,7 @@
       </p>
     </div>
     <al-image src="./images/section-prelude.png"></al-image>
-  </div>
+  </al-section>
 </template>
 <style lang="scss">
 .widget-index-section-prelude {

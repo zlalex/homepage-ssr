@@ -1,8 +1,8 @@
 <template>
   <!-- 国际热点 有轮播 -->
-  <div class="widget-index-section-hot">
+  <al-section class="widget-index-section-hot">
     <al-image src="./images/section-hot.png"></al-image>
-  </div>
+  </al-section>
 </template>
 <style lang="scss">
 .widget-index-section-hot {

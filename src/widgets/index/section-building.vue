@@ -1,6 +1,6 @@
 <template>
   <!-- 热装盘 -->
-  <div class="widget-index-section-building">
+  <al-section class="widget-index-section-building">
     <div class="widget-building-content">
       <colorful-text class="util-text-center building-title">
         国际风尚
@@ -34,7 +34,7 @@
       </div>
       <al-image src="./images/section-building.png"></al-image>
     </div>
-  </div>
+  </al-section>
 </template>
 
 <style lang="scss">
