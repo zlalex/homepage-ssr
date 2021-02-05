@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+ul,
+ol,
+dl,
+li {
+  list-style: none;
+}
+
 .no-scroll {
   width: 100vw;
   height: 100vh;
