@@ -2,17 +2,14 @@
   <!-- 热装盘 -->
   <al-section class="widget-index-section-building">
     <div class="widget-building-content">
-      <colorful-text class="util-text-center building-title">
-        国际风尚
-      </colorful-text>
-      <p class="util-text-center building-text">新春第一展，</p>
-      <p class="util-text-center building-text">送您的是别墅里的经典与永恒。</p>
+      <widget-description
+        title="国际风尚"
+        :subtitle="['新春第一展，', '送您的是别墅里的经典与永恒。']"
+      ></widget-description>
       <p class="util-text-center building-info">
         本届国际别墅大宅设计展能看到什么？预约了解详情。
       </p>
-      <div class="building-content-button">
-        <span class="building-content-button__inner">预约</span>
-      </div>
+      <booking-button class="building-content-button"></booking-button>
     </div>
 
     <div class="building-bg">
@@ -67,38 +64,13 @@
   .widget-building-content {
     padding: vw(50) 0;
   }
-  .building-title {
-    font-weight: bold;
-    font-size: vw(24);
-    line-height: vw(58);
-  }
-  .building-title {
-    color: #d52c3f;
-  }
-  .building-text {
-    font-size: vw(40);
-    line-height: vw(56);
-    font-weight: bold;
-  }
   .building-info {
     margin-top: vw(35);
     font-size: vw(18);
     line-height: vw(28);
   }
   .building-content-button {
-    @include flex-center;
     margin-top: vw(35);
-    .building-content-button__inner {
-      display: block;
-      width: vw(120);
-      line-height: vw(34);
-      font-size: vw(14);
-      font-weight: bold;
-      text-align: center;
-      color: #1b1b1b;
-      border: 1px solid #d52c3f;
-      border-radius: vw(18);
-    }
   }
   .building-list {
     position: relative;
