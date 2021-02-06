@@ -3,13 +3,13 @@
     <div class="booking-wrapper">
       <colorful-text class="booking-tltile">国际风尚</colorful-text>
       <p class="booking-more layout-mobile-only">现在预约即可了解更多。</p>
-      <p class="booking-more booking-more-title layout-desktop-full">
-        国际别墅大宅设计·中国展
-      </p>
-      <p class="booking-desktop-tip layout-desktop-full">
-        关于看展，现可报名了解更多。为了保护您的隐私，星杰承诺将对您的信息严格保密。
-      </p>
-      <div class="booking-item">
+      <div class="booking-more booking-more-title layout-desktop-full">
+        <p>国际别墅大宅设计·中国展</p>
+        <p class="booking-desktop-tip layout-desktop-full">
+          关于看展，现可报名了解更多。为了保护您的隐私，星杰承诺将对您的信息严格保密。
+        </p>
+      </div>
+      <div class="booking-item layout-mobile-only">
         <div class="booking-item-info flex-pub">
           <div class="booking-info-img"><img src="" alt="" /></div>
           <p class="booking-info-text">
@@ -24,14 +24,36 @@
           </p>
         </div>
       </div>
-      <form-input label="您的称呼*" class="booking-form-input" v-model="name" />
-      <form-input label="联系方式*" class="booking-form-input" v-model="tel" />
-      <form-input
-        placeholder="其他需求(非必填)"
-        class="booking-form-input"
-        v-model="other"
-      />
-      <div class="booking-submit">预约看展</div>
+      <div class="info-wrapper flex-pub">
+        <div class="booking-user-info">
+          <form-input
+            label="您的称呼*"
+            class="booking-form-input"
+            v-model="name"
+          />
+          <form-input
+            label="联系方式*"
+            class="booking-form-input"
+            v-model="tel"
+          />
+          <form-input
+            placeholder="其他需求(非必填)"
+            class="booking-form-input"
+            v-model="other"
+          />
+          <div class="booking-submit layout-mobile-only">预约看展</div>
+        </div>
+        <div
+          class="booking-user-info booking-user-info-desk layout-desktop-full"
+        >
+          <form-input-textarea
+            placeholder="其他需求(非必填)"
+            class="booking-form-input booking-form-input-desk"
+            v-model="otherMore"
+          />
+          <div class="booking-submit layout-desktop-full">预约看展</div>
+        </div>
+      </div>
       <p class="booking-tip layout-mobile-only">
         为了保护您的隐私，星杰承诺将对您的信息严格保密。
       </p>
@@ -45,6 +67,7 @@ export default {
       name: "aa",
       tel: "",
       other: "",
+      otherMore: "其他",
     };
   },
 };
@@ -57,11 +80,12 @@ export default {
     align-items: center;
   }
   padding: vw(76) 0 vw(78);
-  border-bottom: 1px solid #d8dbe2;
   font-size: vw(24);
   .booking-wrapper {
     width: vw(550);
     margin: 0 auto;
+    padding-bottom: vw(78);
+    border-bottom: 1px solid #d8dbe2;
   }
   .booking-tltile {
     justify-content: flex-start;
@@ -110,19 +134,56 @@ export default {
     color: #ffffff;
   }
   .booking-tip {
-    margin-top: vw(28);
+    margin-top: vw(24);
     text-align: center;
-    line-height: 1;
+    line-height: 1.5;
     color: #959595;
     font-size: vw(16);
   }
   @include layout-desktop-full {
     // PC STYLE
+    font-size: px2vw(20);
+    .booking-wrapper {
+      width: vw(460);
+      margin: 0 auto;
+      padding: 0 px2vw(198);
+      align-items: flex-start;
+      border: none;
+    }
+    .booking-user-info-desk {
+      margin-left: px2vw(54);
+      width: px2vw(320);
+    }
+    .booking-more {
+      margin-top: px2vw(18);
+      font-size: px2vw(36);
+      font-weight: bold;
+      color: #1b1b1b;
+      line-height: px2vw(44);
+    }
     .booking-desktop-tip {
+      margin-top: px2vw(16);
       font-size: px2vw(14);
       color: #959595;
       line-height: 1;
-      text-align: center;
+      text-align: left;
+    }
+    .info-wrapper {
+      align-items: flex-start;
+    }
+    .booking-form-input {
+      margin-bottom: px2vw(30);
+      font-size: px2vw(14);
+    }
+    .booking-form-input-desk {
+      height: px2vw(150);
+    }
+    .booking-submit {
+      width: px2vw(320);
+      height: px2vw(60);
+      line-height: px2vw(60);
+      border-radius: px2vw(6);
+      font-size: px2vw(18);
     }
   }
 }

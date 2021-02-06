@@ -7,6 +7,7 @@ import ComponentFormInput from './form-input.vue'
 import ComponentTextColumns from './text-columns.vue'
 import ComponentBookingButton from './booking-button.vue'
 import WidgetDescription from '../widgets/description'
+import ComponentFormInputArea from './form-input-textarea.vue'
 
 export default [
   ComponentImage,
@@ -15,6 +16,7 @@ export default [
   ComponentViewPage,
   ComponentViewSection,
   ComponentFormInput,
+  ComponentFormInputArea,
   ComponentTextColumns,
   ComponentBookingButton,
   WidgetDescription
