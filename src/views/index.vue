@@ -24,10 +24,9 @@ export default {
 
 <style lang="scss">
 .view-index {
-  padding-top: vw(90);
   background: #fff;
   .index-fixed-header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -36,7 +35,6 @@ export default {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   }
   @include layout-desktop-full {
-    padding-top: px2vw(70);
     .index-fixed-header {
       height: px2vw(70);
     }

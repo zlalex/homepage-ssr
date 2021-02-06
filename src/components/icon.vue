@@ -1,6 +1,6 @@
 <template>
   <div class="component-icon">
-    <img v-if="name" :src="icons[name]" alt="svg" />
+    <img class="icon-svg" v-if="name" :src="icons[name]" alt="svg" />
   </div>
 </template>
 <script>
@@ -23,5 +23,10 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  .icon-svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
 }
 </style>

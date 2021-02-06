@@ -119,7 +119,7 @@ export default {
   @include layout-desktop-full {
     // PC STYLE
     .booking-desktop-tip {
-      font-size: vw(14);
+      font-size: px2vw(14);
       color: #959595;
       line-height: 1;
       text-align: center;

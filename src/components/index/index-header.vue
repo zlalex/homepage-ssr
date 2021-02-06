@@ -30,7 +30,7 @@ export default {};
   }
   .index-header-menu {
     width: vw(36);
-    height: vw(24);
+    height: vw(30);
   }
   @include layout-desktop-full {
     padding: 0 px2vw(160);
@@ -40,7 +40,7 @@ export default {};
     }
     .index-header-menu {
       width: px2vw(36);
-      height: px2vw(24);
+      height: px2vw(30);
     }
   }
 }

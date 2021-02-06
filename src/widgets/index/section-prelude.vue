@@ -1,21 +1,41 @@
 <template>
   <!-- 序幕 -->
   <al-section class="widget-index-section-prelude">
-    <div class="section-prelude-context">
-      <p class="prelude-text">时尚仿佛一个轮回，经典总在重复。</p>
-      <p class="prelude-text">
-        在家居里，我们期待你的家不被流行和时尚所左右，我们理解时尚的定义和规律，却更愿意在你的家中创造一个一个的经典。让你在这些潮流里——看到家的内核和心里最柔软的需求。
-      </p>
+    <div class="prelude-wrapper">
+      <div class="section-prelude-context">
+        <p class="prelude-text">时尚仿佛一个轮回，经典总在重复。</p>
+        <p class="prelude-text">
+          在家居里，我们期待你的家不被流行和时尚所左右，我们理解时尚的定义和规律，却更愿意在你的家中创造一个一个的经典。让你在这些潮流里——看到家的内核和心里最柔软的需求。
+        </p>
+      </div>
     </div>
-    <al-image src="./images/section-prelude.png"></al-image>
+    <al-image
+      class="layout-mobile-only"
+      src="./images/section-prelude.png"
+    ></al-image>
+    <al-image
+      class="layout-desktop-full"
+      src="./images/section-prelude-pc.png"
+    ></al-image>
   </al-section>
 </template>
 <style lang="scss">
 .widget-index-section-prelude {
-  margin: vw(60) vw(40) 0;
-  position: relative;
+  margin-top: vw(60);
+  padding: 0 vw(40);
+  .prelude-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0 vw(40);
+  }
   @include layout-desktop-full {
-    margin: px2vw(100) px2vw(97) 0 px2vw(450);
+    margin-top: px2vw(100);
+    padding: 0 px2vw(97) 0 px2vw(450);
+    .prelude-wrapper {
+      position: relative;
+      width: px2vw(1370);
+    }
   }
   .section-prelude-context {
     position: absolute;
@@ -23,7 +43,7 @@
     left: vw(80);
     width: vw(508);
     @include layout-desktop-full {
-      top: px2vw(318);
+      top: px2vw(225);
       left: px2vw(185);
       width: px2vw(700);
     }

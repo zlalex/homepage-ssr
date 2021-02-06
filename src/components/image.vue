@@ -38,6 +38,8 @@ export default {
   .component-image-self {
     width: 100%;
     height: 100%;
+    -webkit-touch-callout: none;
+    pointer-events: none;
   }
 }
 </style>

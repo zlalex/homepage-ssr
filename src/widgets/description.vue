@@ -56,5 +56,23 @@ export default {
   .description-split {
     padding-top: vw(20);
   }
+  @include layout-desktop-full {
+    .description-title {
+      margin-bottom: px2vw(25);
+      font-size: px2vw(30);
+    }
+    .description-subtitle {
+      font-size: px2vw(48);
+      line-height: px2vw(60);
+    }
+    .description-info {
+      width: px2vw(630);
+      font-size: px2vw(18);
+      line-height: px2vw(28);
+    }
+    .description-split {
+      padding-top: px2vw(25);
+    }
+  }
 }
 </style>

@@ -5,7 +5,7 @@
 }
 
 @mixin layout-mobile-only {
-  @media (max-width: $mobile-tablet-breakpoint) {
+  @media (max-width: $mobile-tablet-breakpoint - 1px) {
     @content;
   }
 }
@@ -23,7 +23,7 @@
 }
 
 @mixin layout-tablet-only {
-  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $tablet-desktop-breakpoint) {
+  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $tablet-desktop-breakpoint - 1px) {
     @content;
   }
 }
@@ -35,7 +35,7 @@
 }
 
 @mixin layout-desktop-only {
-  @media (min-width: $tablet-desktop-breakpoint) and (max-width: $desktop-large-desktop-breakpoint) {
+  @media (min-width: $tablet-desktop-breakpoint) and (max-width: $desktop-large-desktop-breakpoint - 1px) {
     @content;
   }
 }
@@ -65,7 +65,7 @@
 }
 
 @mixin layout-tablet-desktop-only {
-  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $desktop-large-desktop-breakpoint) {
+  @media (min-width: $mobile-tablet-breakpoint) and (max-width: $desktop-large-desktop-breakpoint - 1px) {
     @content;
   }
 }
