@@ -2,7 +2,7 @@
   <div class="component-form-input">
     <label class="form-input-label__wrapper">
       <p class="form-input-label" v-if="label">{{ label }}</p>
-      <div class="form-input">
+      <div class="form-input" v-if="value">
         <input
           type="text"
           :value="value"
@@ -10,6 +10,7 @@
           @input="handleInput"
         />
       </div>
+      <div class="form-input form-tip" v-else>您可能遗忘了这里。</div>
     </label>
   </div>
 </template>
@@ -56,6 +57,12 @@ export default {
       border: none;
       outline: none;
     }
+  }
+  .form-tip {
+    font-size: vw(24);
+    font-weight: bold;
+    color: #1b1b1b;
+    line-height: vw(90);
   }
 }
 </style>

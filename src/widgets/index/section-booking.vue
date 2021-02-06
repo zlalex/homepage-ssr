@@ -2,7 +2,13 @@
   <al-section class="widget-index-section-booking">
     <div class="booking-wrapper">
       <colorful-text class="booking-tltile">国际风尚</colorful-text>
-      <p class="booking-more">现在预约即可了解更多。</p>
+      <p class="booking-more layout-mobile-only">现在预约即可了解更多。</p>
+      <p class="booking-more booking-more-title layout-desktop-full">
+        国际别墅大宅设计·中国展
+      </p>
+      <p class="booking-desktop-tip layout-desktop-full">
+        关于看展，现可报名了解更多。为了保护您的隐私，星杰承诺将对您的信息严格保密。
+      </p>
       <div class="booking-item">
         <div class="booking-item-info flex-pub">
           <div class="booking-info-img"><img src="" alt="" /></div>
@@ -26,7 +32,7 @@
         v-model="other"
       />
       <div class="booking-submit">预约看展</div>
-      <p class="booking-tip">
+      <p class="booking-tip layout-mobile-only">
         为了保护您的隐私，星杰承诺将对您的信息严格保密。
       </p>
     </div>
@@ -36,7 +42,7 @@
 export default {
   data() {
     return {
-      name: "",
+      name: "aa",
       tel: "",
       other: "",
     };
@@ -46,6 +52,10 @@ export default {
 <style lang="scss">
 .widget-index-section-booking {
   // MOBILE FISRT
+  .flex-pub {
+    display: flex;
+    align-items: center;
+  }
   padding: vw(76) 0 vw(78);
   border-bottom: 1px solid #d8dbe2;
   font-size: vw(24);
@@ -64,10 +74,7 @@ export default {
     color: #1b1b1b;
     line-height: vw(60);
   }
-  .flex-pub {
-    display: flex;
-    align-items: center;
-  }
+
   .booking-item-info {
     span {
       margin-right: vw(18);
@@ -111,6 +118,12 @@ export default {
   }
   @include layout-desktop-full {
     // PC STYLE
+    .booking-desktop-tip {
+      font-size: vw(14);
+      color: #959595;
+      line-height: 1;
+      text-align: center;
+    }
   }
 }
 </style>
