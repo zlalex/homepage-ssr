@@ -1,23 +1,28 @@
 <template>
-  <div class="component-info-input">
-    <label class="form-msg flex-pub">
-      <p class="form-name" v-if="label">{{ label }}</p>
+  <div class="component-form-input">
+    <label class="form-input-label__wrapper">
+      <p class="form-input-label" v-if="label">{{ label }}</p>
       <div class="form-input">
-        <input type="text" :placeholder="placeholder" @input="handlerIpupt" :value="value" />
+        <input
+          type="text"
+          :value="value"
+          :placeholder="placeholder"
+          @input="handleInput"
+        />
       </div>
     </label>
   </div>
 </template>
 <script>
 export default {
-  name: "info-input",
+  name: "form-input",
   props: {
     label: String,
     placeholder: String,
     value: String,
   },
   methods: {
-    handlerIpupt(event) {
+    handleInput(event) {
       this.$emit("input", event.target.value);
     },
   },
@@ -25,22 +30,20 @@ export default {
 </script>
 
 <style lang="scss">
-.component-info-input {
+.component-form-input {
   padding-left: vw(34);
-  border: 1px solid #d8dbe2;
-  border-radius: vw(10);
   width: 100%;
   height: vw(90);
+  border: 1px solid #d8dbe2;
+  border-radius: vw(10);
   overflow: hidden;
-  .flex-pub {
-    display: flex;
-    align-items: center;
-  }
-  .form-name {
+  .form-input-label {
     padding-right: vw(34);
     color: #959595;
   }
-  .form-msg {
+  .form-input-label__wrapper {
+    display: flex;
+    align-items: center;
     height: 100%;
   }
   .form-input {

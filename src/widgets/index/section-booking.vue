@@ -18,9 +18,9 @@
           </p>
         </div>
       </div>
-      <info-input label="您的称呼*" class="booking-form-input" v-model="name" />
-      <info-input label="联系方式*" class="booking-form-input" v-model="tel" />
-      <info-input
+      <form-input label="您的称呼*" class="booking-form-input" v-model="name" />
+      <form-input label="联系方式*" class="booking-form-input" v-model="tel" />
+      <form-input
         placeholder="其他需求(非必填)"
         class="booking-form-input"
         v-model="other"
