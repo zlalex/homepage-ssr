@@ -14,6 +14,7 @@
         {{ item }}
       </p>
     </div>
+    <slot name="after"></slot>
   </div>
 </template>
 <script>

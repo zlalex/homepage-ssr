@@ -11,7 +11,7 @@
       ></widget-description>
     </div>
     <div class="design-photo">
-      <!-- <al-image></al-image> -->
+      <al-image src="./images/section-design.svg"></al-image>
     </div>
   </al-section>
 </template>
@@ -20,9 +20,14 @@
   margin: vw(90) auto 0;
   width: vw(670);
   .design-photo {
-    margin-top: vw(50);
     height: vw(670);
-    background: deeppink;
+  }
+  @include layout-desktop-full {
+    .design-photo {
+      width: px2vw(1364);
+      height: px2vw(1255);
+      margin: px2vw(-120) auto 0;
+    }
   }
 }
 </style>

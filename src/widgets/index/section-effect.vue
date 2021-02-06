@@ -13,20 +13,24 @@
             :subtitle="swiperImage.subtitle"
             :description="swiperImage.description"
           >
-            <div class="split-line"></div>
+            <div class="split-line layout-mobile-only"></div>
           </widget-description>
+          <div class="effect-swiper-control layout-desktop-full"></div>
           <div class="effect-swiper-card">
             <div class="effect-swiper-item">
               <al-image
                 class="effect-swiper-item__image"
                 :src="swiperImage.small"
               ></al-image>
+              <div class="effect-swiper-item__inner">
+                <div class="effect-swiper-control layout-mobile-only"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <!-- 高斯模糊 -->
-      <div class="filter-style">
+      <div class="filter-style layout-mobile-only">
         <div class="filter-style-content">
           <al-image class="filter-image" :src="swiperImage.large"></al-image>
         </div>
@@ -95,7 +99,7 @@ export default {
       const result = {
         title: this.effectSwiperActive.title,
         subtitle: this.effectSwiperActive.subtitle,
-        description: this.effectSwiperActive.description,
+        description: this.$isMobile ? this.effectSwiperActive.description : [],
       };
       result.small = this.$isMobile
         ? this.effectSwiperActive.small
@@ -203,12 +207,16 @@ export default {
     overflow: hidden;
   }
   .effect-swiper-item {
+    display: flex;
     position: relative;
     z-index: 10;
     height: 100%;
     background-color: #252525;
     border-radius: vw(20);
     overflow: hidden;
+  }
+  .effect-swiper-item__inner {
+    margin-left: vw(40);
   }
   // 高斯模糊
   .filter-style {
@@ -229,6 +237,72 @@ export default {
       width: 200%;
       height: 200%;
       filter: blur(100px);
+    }
+  }
+  .effect-swiper-control {
+    height: vw(60);
+  }
+  @include layout-desktop-full {
+    padding: 0;
+    margin-top: px2vw(70);
+    .section-effect-wrapper {
+      height: px2vw(1068);
+    }
+    .effect-swiper {
+      height: px2vw(1068);
+      padding: 0;
+      .effect-swiper-content {
+        position: absolute;
+        top: px2vw(212);
+        right: px2vw(210);
+        width: px2vw(800);
+        height: px2vw(750);
+        margin: 0;
+      }
+      .swiper-active-number {
+        top: px2vw(146);
+        right: px2vw(285);
+        font-size: px2vw(14);
+        line-height: px2vw(20);
+      }
+      .colorful-text__inner {
+        font-size: px2vw(30);
+      }
+      .description-title {
+        margin-bottom: px2vw(26);
+      }
+      .effect-title {
+        width: px2vw(530);
+        margin-left: px2vw(270);
+      }
+    }
+    .effect-swiper-card {
+      height: auto;
+      margin-top: px2vw(110);
+      border: 1px solid transparent;
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+    .effect-swiper-item {
+      height: px2vw(300);
+      background-color: transparent;
+      overflow: inherit;
+    }
+    .effect-swiper-item,
+    .effect-swiper-item__image {
+      border-radius: 0;
+    }
+    .effect-swiper-control {
+      margin-top: px2vw(50);
+      height: px2vw(60);
+    }
+    .effect-swiper-item__image {
+      position: relative;
+      left: px2vw(-311);
+      width: px2vw(310);
+      height: px2vw(300);
     }
   }
 }

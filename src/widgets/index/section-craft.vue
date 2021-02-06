@@ -31,5 +31,8 @@
     width: vw(455);
     background: lightgreen;
   }
+  @include layout-desktop-full {
+    margin-top: px2vw(160);
+  }
 }
 </style>
