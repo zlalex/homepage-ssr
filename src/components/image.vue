@@ -1,5 +1,12 @@
 <template>
-  <div class="component-image" :class="{ 'has-mask': filterBlur }">
+  <div
+    class="component-image"
+    :class="[
+      maskColor,
+      hasMask ? 'has-mask' : '',
+      filterBlur ? 'filter-blur' : '',
+    ]"
+  >
     <img class="component-image-self" :src="src" alt="国际风尚" />
   </div>
 </template>
@@ -9,6 +16,8 @@ export default {
   props: {
     src: String,
     filterBlur: Boolean,
+    hasMask: Boolean,
+    maskColor: String,
   },
 };
 </script>
@@ -19,10 +28,16 @@ export default {
   height: 100%;
   overflow: hidden;
   user-select: none;
+  &.filter-blur {
+    filter: blur(15px);
+  }
   &.has-mask {
     position: relative;
-    filter: blur(15px);
-
+    &.black {
+      &::after {
+        background: rgba(0, 0, 0, 0.6);
+      }
+    }
     &::after {
       content: "";
       position: absolute;

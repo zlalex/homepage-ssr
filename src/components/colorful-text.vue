@@ -17,6 +17,7 @@ export default {
   .colorful-text__inner {
     float: left;
     color: transparent;
+    font-weight: bold;
     background-image: linear-gradient(to right, #fa9986 0%, #d52c3f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

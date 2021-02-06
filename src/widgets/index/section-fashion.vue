@@ -11,20 +11,89 @@
       ></widget-description>
 
       <text-columns
-        class="fashion-datum-columns"
+        class="fashion-datum-columns layout-mobile-only"
         :columns="fashionDatum"
       ></text-columns>
       <div class="fashion-swiper-wrapper">
-        <ul class="fashion-swiper">
-          <li
-            class="fashion-swiper-item"
-            v-for="(item, i) in fashionDetail"
-            :key="i"
-          >
-            <al-image :src="item"></al-image>
-          </li>
-        </ul>
-        <div class="fashion-control"></div>
+        <div class="layout-mobile-only">
+          <ul class="fashion-mobile-swiper">
+            <li
+              class="fashion-swiper-item"
+              v-for="(item, i) in fashionDetail"
+              :key="i"
+            >
+              <al-image :src="item"></al-image>
+            </li>
+          </ul>
+          <div class="fashion-control"></div>
+        </div>
+        <div class="layout-desktop-full">
+          <div class="fashion-swiper-tab__desktop">
+            <p
+              class="fashion-swiper-tab__desktop-item"
+              v-for="(item, i) in fashionSwiperTab"
+              :key="i"
+              :class="{ active: fashionSwiperActiveIndex === i }"
+            >
+              <span class="fashion-swiper-tab__desktop-item-name">
+                {{ item.name }}
+              </span>
+              <span class="fashion-swiper-tab__desktop-item-subtitle">
+                {{ item.subtitle }}
+              </span>
+            </p>
+          </div>
+          <div class="fashion-swiper-desktop">
+            <div class="fashion-swiper-desktop__image">
+              <al-image
+                class="fashion-swiper-desktop__image-between swiper-prev-image"
+                has-mask
+                mask-color="black"
+                :src="swiperPrev"
+              ></al-image>
+              <al-image
+                class="fashion-swiper-desktop__image-active"
+                :src="swiperActive"
+              ></al-image>
+              <al-image
+                class="fashion-swiper-desktop__image-between swiper-next-image"
+                has-mask
+                mask-color="black"
+                :src="swiperNext"
+              ></al-image>
+            </div>
+            <div class="fashion-swiper-desktop__share"></div>
+            <div class="fashion-swiper-desktop__control">
+              <al-icon
+                class="swiper-icon-desktop"
+                name="arrow"
+                position="left"
+                @click="handleSwiperNext(-1)"
+              ></al-icon>
+              <al-icon
+                class="swiper-icon-desktop swiper-icon-right"
+                name="arrow"
+                position="right"
+                @click="handleSwiperNext(1)"
+              ></al-icon>
+              <div class="swiper-icon-desktop-process">
+                <span class="process-active-number">
+                  {{ fashionSwiperActiveIndex + 1 }}
+                </span>
+                <span>/</span>
+                <span class="process-total">
+                  {{ fashionDesktopDetail.length }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="fashion-swiper-desktop__process">
+            <span
+              :style="swiperControlActiveWidth"
+              class="fashion-swiper-desktop__process-active"
+            ></span>
+          </div>
+        </div>
       </div>
     </div>
   </al-section>
@@ -53,8 +122,97 @@ export default {
           description: "精选实景案例",
         },
       ],
-      fashionDetail: [],
+      fashionSwiperTab: [
+        {
+          name: "现代轻奢",
+          subtitle: "Mild Luxury",
+        },
+        {
+          name: "现代简约",
+          subtitle: "Modern Concise",
+        },
+        {
+          name: "美式",
+          subtitle: "American",
+        },
+        {
+          name: "现代中式",
+          subtitle: "Neo-Chinese Style",
+        },
+        {
+          name: "法式轻奢",
+          subtitle: "French",
+        },
+      ],
+      fashionSwiperActiveIndex: 0,
+      fashionDetail: [
+        "./images/section-swiper-1.jpg",
+        "./images/section-swiper-2.jpg",
+        "./images/section-swiper-3.jpg",
+        "./images/section-swiper-4.jpg",
+        "./images/section-swiper-5.jpg",
+        "./images/section-swiper-6.jpg",
+        "./images/section-swiper-7.jpg",
+        "./images/section-swiper-8.jpg",
+        "./images/section-swiper-9.jpg",
+        "./images/section-swiper-10.jpg",
+        "./images/section-swiper-11.jpg",
+        "./images/section-swiper-12.jpg",
+        "./images/section-swiper-13.jpg",
+        "./images/section-swiper-14.jpg",
+        "./images/section-swiper-15.jpg",
+        "./images/section-swiper-16.jpg",
+        "./images/section-swiper-17.jpg",
+        "./images/section-swiper-18.jpg",
+      ],
+      fashionDesktopDetail: [
+        "./images/section-swiper-pc-1.jpg",
+        "./images/section-swiper-pc-2.jpg",
+        "./images/section-swiper-pc-3.jpg",
+        "./images/section-swiper-pc-4.jpg",
+        "./images/section-swiper-pc-5.jpg",
+      ],
     };
+  },
+  computed: {
+    swiperControlActiveWidth() {
+      let width =
+        ((this.fashionSwiperActiveIndex + 1) * 100) /
+        this.fashionSwiperTab.length;
+      return `width: ${width}%;`;
+    },
+    swiperPrev() {
+      let index = this.fashionSwiperActiveIndex - 1;
+      if (index < 0) {
+        index = this.fashionDesktopDetail.length - 1;
+      } else if (index > this.fashionDesktopDetail.length - 1) {
+        index = 0;
+      }
+      return this.fashionDesktopDetail[index];
+    },
+    swiperActive() {
+      return this.fashionDesktopDetail[this.fashionSwiperActiveIndex];
+    },
+    swiperNext() {
+      let index = this.fashionSwiperActiveIndex + 1;
+      if (index < 0) {
+        index = this.fashionDesktopDetail.length - 1;
+      } else if (index > this.fashionDesktopDetail.length - 1) {
+        index = 0;
+      }
+      return this.fashionDesktopDetail[index];
+    },
+  },
+  methods: {
+    handleSwiperNext(value) {
+      let index = this.fashionSwiperActiveIndex + value;
+      if (index < 0) {
+        index = this.fashionDesktopDetail.length - 1;
+      } else if (index > this.fashionDesktopDetail.length - 1) {
+        index = 0;
+      }
+      this.fashionSwiperActiveIndex = index;
+    },
   },
 };
 </script>
@@ -79,6 +237,141 @@ export default {
     margin-top: vw(35);
     height: vw(60);
     background: cornflowerblue;
+  }
+  .fashion-swiper-tab__desktop {
+    width: px2vw(1024);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .fashion-swiper-tab__desktop-item {
+    width: px2vw(120);
+    display: flex;
+    flex-direction: column;
+    color: #ddd;
+    text-align: center;
+    &.active {
+      color: #000;
+    }
+  }
+  .fashion-swiper-tab__desktop-item-name {
+    font-size: px2vw(22);
+    line-height: px2vw(22);
+  }
+
+  .fashion-swiper-tab__desktop-item-subtitle {
+    margin-top: px2vw(10);
+    font-size: px2vw(10);
+    line-height: px2vw(10);
+  }
+  .fashion-swiper-desktop__process {
+    position: relative;
+    width: px2vw(640);
+    height: 1px;
+    margin: px2vw(70) auto 0;
+    background-color: #bdbdbd;
+    overflow: hidden;
+    border-radius: 1px;
+  }
+  .fashion-swiper-desktop__process-active {
+    position: absolute;
+    height: 1px;
+    background-color: #000;
+    transition: width 0.5s;
+  }
+  .fashion-swiper-desktop {
+    position: relative;
+    width: 100%;
+    margin-top: px2vw(100);
+  }
+  .swiper-icon-desktop {
+    width: px2vw(66);
+    height: px2vw(60);
+  }
+  .fashion-swiper-desktop__image {
+    @include space-between;
+    position: relative;
+    left: px2vw(-220);
+    width: px2vw(2360);
+  }
+  .swiper-prev-image {
+    left: px2vw(-230);
+  }
+  .swiper-next-image {
+    right: px2vw(-230);
+  }
+  .fashion-swiper-desktop__image-active,
+  .fashion-swiper-desktop__image-between {
+    border-radius: px2vw(22);
+    overflow: hidden;
+  }
+  .fashion-swiper-desktop__image-between {
+    position: relative;
+    width: px2vw(660);
+    height: px2vw(400);
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .fashion-swiper-desktop__image-active {
+    width: px2vw(900);
+    height: px2vw(540);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+  .fashion-swiper-desktop__share {
+    left: px2vw(210);
+  }
+  .fashion-swiper-desktop__control {
+    right: px2vw(210);
+    flex-direction: column;
+  }
+  .swiper-icon-right {
+    margin-top: px2vw(16);
+  }
+  .fashion-swiper-desktop__share,
+  .fashion-swiper-desktop__control {
+    position: absolute;
+    top: px2vw(70);
+    z-index: 10;
+    width: px2vw(300);
+    height: px2vw(400);
+    @include flex-center;
+  }
+  .swiper-icon-desktop-process {
+    margin-top: px2vw(50);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: px2vw(40);
+    font-size: px2vw(12);
+    line-height: px2vw(12);
+    color: #ddd;
+  }
+  .process-active-number {
+    font-size: px2vw(28);
+    line-height: px2vw(22);
+    color: #000;
+  }
+  @include layout-desktop-full {
+    margin-top: px2vw(100);
+    .fashion-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+    .fashion-datum-columns {
+      margin-top: px2vw(38);
+    }
+    .fashion-swiper-wrapper {
+      margin-top: px2vw(50);
+    }
+    .fashion-swiper {
+      height: px2vw(400);
+      background: chocolate;
+    }
+    .fashion-control {
+      margin-top: px2vw(35);
+      height: px2vw(60);
+      background: cornflowerblue;
+    }
   }
 }
 </style>
