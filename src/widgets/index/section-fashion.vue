@@ -16,15 +16,12 @@
       ></text-columns>
       <div class="fashion-swiper-wrapper">
         <div class="layout-mobile-only">
-          <ul class="fashion-mobile-swiper">
-            <li
-              class="fashion-swiper-item"
-              v-for="(item, i) in fashionDetail"
-              :key="i"
-            >
-              <al-image :src="item"></al-image>
-            </li>
-          </ul>
+          <div class="fashion-mobile-swiper">
+            <al-image
+              class="fashion-mobile-swiper__active"
+              :src="swiperActive"
+            ></al-image>
+          </div>
           <div class="fashion-control"></div>
         </div>
         <div class="layout-desktop-full">
@@ -146,31 +143,31 @@ export default {
       ],
       fashionSwiperActiveIndex: 0,
       fashionDetail: [
-        "./images/section-swiper-1.jpg",
-        "./images/section-swiper-2.jpg",
-        "./images/section-swiper-3.jpg",
-        "./images/section-swiper-4.jpg",
-        "./images/section-swiper-5.jpg",
-        "./images/section-swiper-6.jpg",
-        "./images/section-swiper-7.jpg",
-        "./images/section-swiper-8.jpg",
-        "./images/section-swiper-9.jpg",
-        "./images/section-swiper-10.jpg",
-        "./images/section-swiper-11.jpg",
-        "./images/section-swiper-12.jpg",
-        "./images/section-swiper-13.jpg",
-        "./images/section-swiper-14.jpg",
-        "./images/section-swiper-15.jpg",
-        "./images/section-swiper-16.jpg",
-        "./images/section-swiper-17.jpg",
-        "./images/section-swiper-18.jpg",
+        "./images/fashion-swiper-1.jpg",
+        "./images/fashion-swiper-2.jpg",
+        "./images/fashion-swiper-3.jpg",
+        "./images/fashion-swiper-4.jpg",
+        "./images/fashion-swiper-5.jpg",
+        "./images/fashion-swiper-6.jpg",
+        "./images/fashion-swiper-7.jpg",
+        "./images/fashion-swiper-8.jpg",
+        "./images/fashion-swiper-9.jpg",
+        "./images/fashion-swiper-10.jpg",
+        "./images/fashion-swiper-11.jpg",
+        "./images/fashion-swiper-12.jpg",
+        "./images/fashion-swiper-13.jpg",
+        "./images/fashion-swiper-14.jpg",
+        "./images/fashion-swiper-15.jpg",
+        "./images/fashion-swiper-16.jpg",
+        "./images/fashion-swiper-17.jpg",
+        "./images/fashion-swiper-18.jpg",
       ],
       fashionDesktopDetail: [
-        "./images/section-swiper-pc-1.jpg",
-        "./images/section-swiper-pc-2.jpg",
-        "./images/section-swiper-pc-3.jpg",
-        "./images/section-swiper-pc-4.jpg",
-        "./images/section-swiper-pc-5.jpg",
+        "./images/fashion-swiper-pc-1.jpg",
+        "./images/fashion-swiper-pc-2.jpg",
+        "./images/fashion-swiper-pc-3.jpg",
+        "./images/fashion-swiper-pc-4.jpg",
+        "./images/fashion-swiper-pc-5.jpg",
       ],
     };
   },
@@ -191,6 +188,9 @@ export default {
       return this.fashionDesktopDetail[index];
     },
     swiperActive() {
+      if (this.$isMobile) {
+        return this.fashionDetail[this.fashionSwiperActiveIndex];
+      }
       return this.fashionDesktopDetail[this.fashionSwiperActiveIndex];
     },
     swiperNext() {
@@ -205,10 +205,14 @@ export default {
   },
   methods: {
     handleSwiperNext(value) {
+      let length = this.fashionDesktopDetail.length;
       let index = this.fashionSwiperActiveIndex + value;
+      if (this.$isMobile) {
+        length = this.fashionDetail.length;
+      }
       if (index < 0) {
-        index = this.fashionDesktopDetail.length - 1;
-      } else if (index > this.fashionDesktopDetail.length - 1) {
+        index = length - 1;
+      } else if (index > length - 1) {
         index = 0;
       }
       this.fashionSwiperActiveIndex = index;
@@ -231,8 +235,12 @@ export default {
   }
   .fashion-swiper {
     height: vw(400);
-    background: chocolate;
+    // background: chocolate;
   }
+  // .fashion-mobile-swiper__active {
+  //   width: 100%;
+  //   height: vw(400);
+  // }
   .fashion-control {
     margin-top: vw(35);
     height: vw(60);

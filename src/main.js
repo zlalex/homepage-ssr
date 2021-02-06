@@ -7,6 +7,9 @@ Components.forEach(item => {
   Vue.component(item.name, item)
 })
 
+const __global = window || {}
+const isMobile = __global.width < 1024
+Vue.prototype.$isMobile = isMobile
 Vue.config.productionTip = false
 
 new Vue({
