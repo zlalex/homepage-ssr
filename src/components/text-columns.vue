@@ -25,7 +25,7 @@ export default {
   .text-columns-item {
     display: inline-block;
     font-size: vw(12);
-    padding: 0 vw(60);
+    padding: 0 vw(54);
     border-right: 1px solid #bcbcbc;
     text-align: left;
     &:last-of-type {

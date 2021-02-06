@@ -5,6 +5,7 @@ import ComponentViewPage from './view-page.vue'
 import ComponentViewSection from './view-section.vue'
 import ComponentFormInput from './form-input.vue'
 import ComponentTextColumns from './text-columns.vue'
+import WidgetDescription from '../widgets/description'
 
 export default [
   ComponentImage,
@@ -13,5 +14,6 @@ export default [
   ComponentViewPage,
   ComponentViewSection,
   ComponentFormInput,
-  ComponentTextColumns
+  ComponentTextColumns,
+  WidgetDescription
 ]
