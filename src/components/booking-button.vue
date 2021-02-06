@@ -1,0 +1,32 @@
+<template>
+  <div class="component-booking-button">
+    <span class="component-booking-button__inner">{{ text }}</span>
+  </div>
+</template>
+<script>
+export default {
+  name: "booking-button",
+  props: {
+    text: {
+      type: String,
+      default: () => "预约",
+    },
+  },
+};
+</script>
+<style lang="scss">
+.component-booking-button {
+  @include flex-center;
+  .component-booking-button__inner {
+    display: block;
+    width: vw(120);
+    line-height: vw(36);
+    font-size: vw(14);
+    font-weight: bold;
+    text-align: center;
+    color: #1b1b1b;
+    border: 1px solid #d52c3f;
+    border-radius: vw(18);
+  }
+}
+</style>

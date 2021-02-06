@@ -1,10 +1,6 @@
 <template>
-  <div class="widget-description">
-    <colorful-text
-      v-if="title"
-      class="description-title"
-      :class="{ 'align-left': alignLeft }"
-    >
+  <div class="widget-description" :class="{ 'align-left': alignLeft }">
+    <colorful-text v-if="title" class="description-title">
       {{ title }}
     </colorful-text>
     <template v-if="subtitle && subtitle.length">
@@ -33,17 +29,16 @@ export default {
 <style lang="scss">
 .widget-description {
   display: block;
-  .description-title,
-  .description-subtitle,
-  .description-info {
-    text-align: center;
+  text-align: center;
+  &.align-left {
+    text-align: left;
+    .description-title {
+      justify-content: flex-start;
+    }
   }
   .description-title {
     margin-bottom: vw(18);
     font-size: vw(24);
-    &.align-left {
-      justify-content: flex-start;
-    }
   }
   .description-subtitle {
     color: #1b1b1b;

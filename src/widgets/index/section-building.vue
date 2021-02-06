@@ -9,10 +9,7 @@
       <p class="util-text-center building-info">
         本届国际别墅大宅设计展能看到什么？预约了解详情。
       </p>
-
-      <div class="building-content-button">
-        <span class="building-content-button__inner">预约</span>
-      </div>
+      <booking-button class="building-content-button"></booking-button>
     </div>
 
     <div class="building-bg">
@@ -73,19 +70,7 @@
     line-height: vw(28);
   }
   .building-content-button {
-    @include flex-center;
     margin-top: vw(35);
-    .building-content-button__inner {
-      display: block;
-      width: vw(120);
-      line-height: vw(34);
-      font-size: vw(14);
-      font-weight: bold;
-      text-align: center;
-      color: #1b1b1b;
-      border: 1px solid #d52c3f;
-      border-radius: vw(18);
-    }
   }
   .building-list {
     position: relative;

@@ -9,6 +9,9 @@
     <widget-index-section-designer></widget-index-section-designer>
     <widget-index-section-design></widget-index-section-design>
     <widget-index-section-discount></widget-index-section-discount>
+    <widget-index-section-craft></widget-index-section-craft>
+    <widget-index-section-patent></widget-index-section-patent>
+    <widget-index-section-booking-before></widget-index-section-booking-before>
     <widget-index-section-booking></widget-index-section-booking>
   </div>
 </template>
@@ -22,6 +25,9 @@ import WidgetIndexSectionEffect from "../../widgets/index/section-effect";
 import WidgetIndexSectionDesigner from "../../widgets/index/section-designer";
 import WidgetIndexSectionDesign from "../../widgets/index/section-design";
 import WidgetIndexSectionDiscount from "../../widgets/index/section-discount";
+import WidgetIndexSectionCraft from "../../widgets/index/section-craft";
+import WidgetIndexSectionPatent from "../../widgets/index/section-patent";
+import WidgetIndexSectionBookingBefore from "../../widgets/index/section-booking-before";
 import WidgetIndexSectionBooking from "../../widgets/index/section-booking";
 
 export default {
@@ -35,6 +41,9 @@ export default {
     WidgetIndexSectionDesigner,
     WidgetIndexSectionDesign,
     WidgetIndexSectionDiscount,
+    WidgetIndexSectionCraft,
+    WidgetIndexSectionPatent,
+    WidgetIndexSectionBookingBefore,
     WidgetIndexSectionBooking,
   },
 };
