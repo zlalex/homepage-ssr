@@ -15,6 +15,7 @@
         :columns="fashionDatum"
       ></text-columns>
       <div class="fashion-swiper-wrapper">
+        <!-- mobile -->
         <div class="layout-mobile-only">
           <div class="fashion-mobile-swiper">
             <al-image
@@ -22,8 +23,42 @@
               :src="swiperActive"
             ></al-image>
           </div>
-          <div class="fashion-control"></div>
+          <div class="fashion-control">
+            <div class="fashion-control-left">
+              <p class="fashion-control-left__title">One Ture Life</p>
+              <p class="fashion-control-left__number">
+                <span class="process-active-number">
+                  {{ fashionSwiperActiveIndex + 1 }}
+                </span>
+                <span class="active-split-line">/</span>
+                <span>
+                  {{ fashionDetail.length }}
+                </span>
+              </p>
+            </div>
+            <div class="fashion-control-process">
+              <span
+                :style="swiperControlActiveWidth"
+                class="fashion-control-process__active"
+              ></span>
+            </div>
+            <div class="fashion-control-right">
+              <al-icon
+                class="fashion-mobile-control__arrow"
+                name="arrowGray"
+                position="left"
+                @click="handleSwiperNext(-1)"
+              ></al-icon>
+              <al-icon
+                class="fashion-mobile-control__arrow"
+                name="arrowGray"
+                position="right"
+                @click="handleSwiperNext(1)"
+              ></al-icon>
+            </div>
+          </div>
         </div>
+        <!-- desktop -->
         <div class="layout-desktop-full">
           <div class="fashion-swiper-tab__desktop">
             <p
@@ -59,7 +94,18 @@
                 :src="swiperNext"
               ></al-image>
             </div>
-            <div class="fashion-swiper-desktop__share"></div>
+            <div class="fashion-swiper-desktop__share">
+              <p class="share-title">Mild luxury</p>
+              <p class="share-subtitle">
+                <span>生活</span>
+                <span>瑕不掩</span>
+                <span>瑜。</span>
+              </p>
+              <div class="share-icon">
+                <al-icon class="fashion-like-icon" name="like"></al-icon>
+                <al-icon class="fashion-share-icon" name="share"></al-icon>
+              </div>
+            </div>
             <div class="fashion-swiper-desktop__control">
               <al-icon
                 class="swiper-icon-desktop"
@@ -78,7 +124,7 @@
                   {{ fashionSwiperActiveIndex + 1 }}
                 </span>
                 <span>/</span>
-                <span class="process-total">
+                <span>
                   {{ fashionDesktopDetail.length }}
                 </span>
               </div>
@@ -173,9 +219,14 @@ export default {
   },
   computed: {
     swiperControlActiveWidth() {
-      let width =
-        ((this.fashionSwiperActiveIndex + 1) * 100) /
-        this.fashionSwiperTab.length;
+      let length = this.fashionDesktopDetail.length;
+      if (this.$isMobile) {
+        length = this.fashionDetail.length;
+        let width =
+          ((length - this.fashionSwiperActiveIndex - 1) / length) * 100;
+        return `width: ${width}%;`;
+      }
+      let width = ((this.fashionSwiperActiveIndex + 1) * 100) / length;
       return `width: ${width}%;`;
     },
     swiperPrev() {
@@ -235,16 +286,56 @@ export default {
   }
   .fashion-swiper {
     height: vw(400);
-    // background: chocolate;
   }
-  // .fashion-mobile-swiper__active {
-  //   width: 100%;
-  //   height: vw(400);
-  // }
   .fashion-control {
     margin-top: vw(35);
     height: vw(60);
-    background: cornflowerblue;
+    @include space-between;
+  }
+  .fashion-control-left__title {
+    font-size: vw(12);
+  }
+  .layout-mobile-only {
+    .fashion-control-left {
+      width: vw(100);
+    }
+    .fashion-control-right {
+      width: vw(130);
+      margin-left: vw(10);
+      display: flex;
+      justify-content: space-between;
+    }
+    .fashion-control-process {
+      flex: 1;
+      max-width: vw(400);
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #fa9986 0%, #d52c3f 100%);
+    }
+    .fashion-control-process__active {
+      right: 0;
+      left: auto;
+      width: 100%;
+      height: 2px;
+      background-color: #ddd;
+    }
+    .fashion-mobile-control__arrow {
+      width: vw(66);
+      height: vw(60);
+    }
+    .process-active-number {
+      font-size: vw(28);
+      color: #000;
+    }
+    .fashion-control-left__number {
+      display: flex;
+      margin-top: vw(22);
+      font-size: vw(10);
+      color: #ddd;
+    }
+    .active-split-line {
+      margin: 0 vw(10);
+    }
   }
   .fashion-swiper-tab__desktop {
     width: px2vw(1024);
@@ -273,17 +364,22 @@ export default {
     font-size: px2vw(10);
     line-height: px2vw(10);
   }
+  .fashion-control-process,
   .fashion-swiper-desktop__process {
     position: relative;
-    width: px2vw(640);
     height: 1px;
-    margin: px2vw(70) auto 0;
     background-color: #bdbdbd;
     overflow: hidden;
     border-radius: 1px;
+    @include layout-desktop-full {
+      width: px2vw(640);
+      margin: px2vw(70) auto 0;
+    }
   }
+  .fashion-control-process__active,
   .fashion-swiper-desktop__process-active {
     position: absolute;
+    left: 0;
     height: 1px;
     background-color: #000;
     transition: width 0.5s;
@@ -325,8 +421,42 @@ export default {
     height: px2vw(540);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   }
-  .fashion-swiper-desktop__share {
-    left: px2vw(210);
+  .layout-desktop-full {
+    .fashion-swiper-desktop__share {
+      left: px2vw(210);
+      padding: px2vw(50) 0;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+    .share-title {
+      font-size: px2vw(12);
+      line-height: px2vw(12);
+      color: #868686;
+    }
+    .share-subtitle {
+      display: flex;
+      flex-direction: column;
+      font-size: px2vw(30);
+      line-height: px2vw(40);
+      color: #000;
+      span {
+        font-weight: bold;
+      }
+    }
+    .share-icon {
+      display: flex;
+      width: px2vw(80);
+    }
+    .fashion-like-icon {
+      width: px2vw(16);
+      height: px2vw(14);
+      margin-right: px2vw(20);
+    }
+    .fashion-share-icon {
+      width: px2vw(14);
+      height: px2vw(14);
+    }
   }
   .fashion-swiper-desktop__control {
     right: px2vw(210);
