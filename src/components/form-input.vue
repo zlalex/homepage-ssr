@@ -21,6 +21,7 @@ export default {
     label: String,
     placeholder: String,
     value: String,
+    status: Boolean
   },
   methods: {
     handleInput(event) {
@@ -63,6 +64,25 @@ export default {
     font-weight: bold;
     color: #1b1b1b;
     line-height: vw(90);
+  }
+  @include layout-desktop-full {
+    // PC STYLE
+    width: px2vw(320);
+    padding-left: px2vw(24);
+    height: px2vw(60);
+    border-radius: px2vw(6);
+    .form-input-label {
+      padding-right: px2vw(24);
+    }
+    .form-input {
+      input {
+        padding-right: px2vw(6);
+      }
+    }
+    .form-tip {
+      font-size: px2vw(14);
+      line-height: px2vw(60);
+    }
   }
 }
 </style>
