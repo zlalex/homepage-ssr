@@ -8,6 +8,7 @@
         {{ item }}
       </p>
     </template>
+    <slot></slot>
     <div class="description-split" v-if="description && description.length">
       <p class="description-info" v-for="item in description" :key="item">
         {{ item }}
