@@ -1,6 +1,6 @@
 <template>
   <div class="component-booking-button">
-    <span class="component-booking-button__inner">{{ text }}</span>
+    <a href="#booking" class="component-booking-button__inner">{{ text }}</a>
   </div>
 </template>
 <script>
@@ -27,6 +27,8 @@ export default {
     color: #1b1b1b;
     border: 1px solid #d52c3f;
     border-radius: vw(20);
+    font-style: normal;
+    text-decoration: none;
     @include layout-desktop-full {
       width: px2vw(120);
       line-height: px2vw(36);

@@ -16,7 +16,9 @@
         ]"
       >
         <template #after>
-          <div class="discount-booking-button layout-desktop-full">预约来看展</div>
+          <div class="discount-booking-button layout-desktop-full">
+            <a class="booking-anchor" href="#booking">预约来看展</a>
+          </div>
         </template>
       </widget-description>
     </div>
@@ -41,6 +43,11 @@
   }
   .discount-image {
     margin-top: vw(50);
+  }
+  .booking-anchor {
+    font-style: normal;
+    text-decoration: none;
+    color: #1b1b1b;
   }
   @include layout-desktop-full {
     position: relative;

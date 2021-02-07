@@ -9,7 +9,9 @@
       ></widget-description>
     </div>
     <booking-button class="booking-before-button"></booking-button>
-    <div class="booking-before-icon"></div>
+    <div class="booking-before-icon">
+      <al-icon name="arrowSimple" position="bottom"></al-icon>
+    </div>
   </al-section>
 </template>
 <style lang="scss">
@@ -23,7 +25,6 @@
     width: vw(24);
     height: vw(14);
     margin: vw(100) auto 0;
-    background: cornflowerblue;
   }
 }
 </style>

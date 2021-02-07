@@ -1,5 +1,6 @@
 <template>
   <al-section class="widget-index-section-booking">
+    <a href="javascript:void(0);" name="booking"></a>
     <div class="booking-wrapper">
       <colorful-text class="booking-tltile">国际风尚</colorful-text>
       <p class="booking-more layout-mobile-only">现在预约即可了解更多。</p>

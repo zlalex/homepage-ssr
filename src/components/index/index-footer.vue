@@ -18,14 +18,22 @@
             <p class="footer-strong">HTTPS://WWW.XINGJIESJ.COM/NB</p>
           </div>
         </div>
-        <div class="footer-option"></div>
+        <div class="footer-option" @click="scrollToTop">
+          <al-icon name="footerBack"></al-icon>
+        </div>
       </div>
       <div class="footer-icon footer-pub">
         <p class="icon-copy-right">© 2020 SINGO.</p>
         <div class="icon-channel footer-pub">
-          <div class="channel-svg">1</div>
-          <div class="channel-svg">2</div>
-          <div class="channel-svg">3</div>
+          <div class="channel-svg">
+            <al-icon name="tiktok"></al-icon>
+          </div>
+          <div class="channel-svg">
+            <al-icon name="weibo"></al-icon>
+          </div>
+          <div class="channel-svg">
+            <al-icon name="wechat"></al-icon>
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +66,14 @@ export default {
         "关于星杰",
       ],
     };
+  },
+  methods: {
+    scrollToTop() {
+      if(this.$isMobile){
+        // document
+        window.scrollTo(0,0)
+      }
+    },
   },
 };
 </script>
@@ -95,7 +111,6 @@ export default {
   .footer-option {
     flex: 0 0 vw(96);
     height: vw(256);
-    border: 1px solid red;
   }
   .footer-icon {
     margin-top: vw(84);
@@ -110,7 +125,7 @@ export default {
   .channel-svg {
     width: vw(34);
     height: vw(26);
-    border: 1px solid red;
+    // border: 1px solid red;
   }
   @include layout-desktop-full {
     .pub-flex {
