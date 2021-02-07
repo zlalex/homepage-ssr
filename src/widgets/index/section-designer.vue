@@ -17,7 +17,13 @@
       <div class="designer-photos-wrapper">
         <ul class="designer-photos-list">
           <li class="designer-photo" v-for="(photo, i) in photos" :key="i">
-
+            <div class="photo-inner">
+              <span class="photo-inner-name">{{ photo.name }}</span>
+              <span class="photo-inner-description">{{
+                photo.description
+              }}</span>
+            </div>
+            <al-image :src="photo.url"></al-image>
           </li>
         </ul>
       </div>
@@ -28,22 +34,26 @@
 const names = "林 挺,李 鸣,姚 瑶,周华明,顾晗波,谢小贤,王 城,陈晓亮,周美娜,朱雅琴,王 昕,童凌霄,王丹艇,苏 畅,刘思思,过雪峰,卢孔宗,毛金铭,张 辰,鲍三军".split(
   ","
 );
+const designerDescription = "21年设计经验,19年设计经验,15年设计经验,21年设计经验,17年设计经验,16年设计经验,19年设计经验,18年设计经验,17年设计经验,20年设计经验,15年设计经验,15年设计经验,15年设计经验,15年设计经验,10年设计经验,21年设计经验,17年设计经验,15年设计经验,11年设计经验,19年设计经验".split(
+  ","
+);
 // const photos = [
 //   './images/'
 // ]
 export default {
   mounted() {
-    this.photos = names.map((name) => {
+    this.photos = names.map((name, i) => {
       return {
         name,
-        url: "",
-        description: "",
+        url: `./images/designer-mobile/designer-${i + 1}.jpg`,
+        description: this.designerDescription[i],
       };
     });
   },
   data() {
     return {
       names,
+      designerDescription,
       designerDatum: [
         {
           title: "人均",
@@ -84,14 +94,31 @@ export default {
     flex-wrap: wrap;
   }
   .designer-photo {
+    position: relative;
     width: vw(160);
     height: vw(210);
     margin-right: vw(10);
     margin-bottom: vw(10);
-    background: darkorange;
     &:nth-of-type(4n) {
       margin-right: 0;
     }
+  }
+  .photo-inner {
+    position: absolute;
+    left: vw(16);
+    bottom: vw(10);
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+  }
+  .photo-inner-name {
+    font-size: vw(20);
+    line-height: vw(28);
+    font-weight: bold;
+  }
+  .photo-inner-description {
+    font-size: vw(14);
+    line-height: vw(22);
   }
 }
 </style>

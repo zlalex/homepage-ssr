@@ -23,7 +23,29 @@
                 :src="swiperImage.small"
               ></al-image>
               <div class="effect-swiper-item__inner">
-                <div class="effect-swiper-control layout-mobile-only"></div>
+                <div class="effect-swiper-control layout-mobile-only">
+                  <div class="item-title">
+                    <span class="swiper-item-subtitle">{{
+                      swiperImage.swiperSubtitle
+                    }}</span>
+                    <span class="split-arrow">></span>
+                    <span class="swiper-item-title">{{
+                      swiperImage.swiperTitle
+                    }}</span>
+                  </div>
+                  <div class="item-tags">
+                    <span
+                      class="item-tag"
+                      v-for="(item, i) in swiperImage.tags"
+                      :key="i"
+                      >{{ item }}</span
+                    >
+                  </div>
+                  <div class="item-control">
+                    <al-icon name="arrow" position="left" @click="handleSwiperNext(-1)"></al-icon>
+                    <al-icon name="arrow" position="right" @click="handleSwiperNext(1)"></al-icon>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -53,6 +75,9 @@ const effectSwiperDetail = [
     ],
     desktopSmall: "./images/effect-swiper-pc-small-1.jpg",
     desktopLarge: "./images/effect-swiper-pc-1.jpg",
+    swiperTitle: "视 觉",
+    swiperSubtitle: "房屋改造",
+    tags: ["旧房", "精装房", "自建房"],
   },
   {
     small: "./images/effect-swiper-small-2.jpg",
@@ -66,6 +91,9 @@ const effectSwiperDetail = [
     ],
     desktopSmall: "./images/effect-swiper-pc-small-2.jpg",
     desktopLarge: "./images/effect-swiper-pc-2.jpg",
+    swiperTitle: "视 觉",
+    swiperSubtitle: "房屋改造",
+    tags: ["旧房", "精装房", "自建房"],
   },
   {
     small: "./images/effect-swiper-small-3.jpg",
@@ -79,6 +107,9 @@ const effectSwiperDetail = [
     ],
     desktopSmall: "./images/effect-swiper-pc-small-3.jpg",
     desktopLarge: "./images/effect-swiper-pc-3.jpg",
+    swiperTitle: "视 觉",
+    swiperSubtitle: "房屋改造",
+    tags: ["旧房", "精装房", "自建房"],
   },
 ];
 export default {
@@ -100,6 +131,9 @@ export default {
         title: this.effectSwiperActive.title,
         subtitle: this.effectSwiperActive.subtitle,
         description: this.$isMobile ? this.effectSwiperActive.description : [],
+        swiperTitle: this.effectSwiperActive.swiperTitle,
+        swiperSubtitle: this.effectSwiperActive.swiperSubtitle,
+        tags: this.effectSwiperActive.tags,
       };
       result.small = this.$isMobile
         ? this.effectSwiperActive.small
@@ -108,6 +142,18 @@ export default {
         ? this.effectSwiperActive.large
         : this.effectSwiperActive.desktopLarge;
       return result;
+    },
+  },
+  methods: {
+    handleSwiperNext(value) {
+      let length = this.effectSwiperDetail.length;
+      let index = this.effectSwiperActiveIndex + value;
+      if (index < 0) {
+        index = length - 1;
+      } else if (index > length - 1) {
+        index = 0;
+      }
+      this.effectSwiperActiveIndex = index;
     },
   },
 };
@@ -121,7 +167,7 @@ export default {
     height: vw(1100);
   }
   .effect-swiper {
-    padding: vw(148) 0 vw(72);
+    padding: vw(128) 0 vw(72);
     z-index: 10;
     .colorful-text__inner {
       font-size: vw(30);
@@ -174,7 +220,7 @@ export default {
     opacity: 0.15;
   }
   .effect-swiper-card {
-    margin-top: vw(100);
+    margin-top: vw(90);
     position: relative;
     z-index: 10;
     width: 100%;
@@ -216,7 +262,56 @@ export default {
     overflow: hidden;
   }
   .effect-swiper-item__inner {
-    margin-left: vw(40);
+    margin-left: vw(34);
+    padding-top: vw(40);
+    width: vw(260);
+    color: #b2b2b2;
+    .item-title {
+      display: flex;
+      padding-left: vw(6);
+      align-items: center;
+    }
+    .item-tags {
+      display: flex;
+      padding-left: vw(6);
+      margin-top: vw(20);
+    }
+    .item-tag {
+      margin-right: vw(10);
+      padding: vw(6) vw(14);
+      border: 1px solid #3b3b3a;
+      font-size: vw(14);
+      text-align: center;
+      line-height: 1;
+      border-radius: vw(20);
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+    .swiper-item-subtitle {
+      font-size: vw(16);
+      font-style: italic;
+    }
+    .split-arrow {
+      margin: 0 vw(15);
+      font-size: vw(14);
+      color: #b2b2b2;
+    }
+    .swiper-item-title {
+      position: relative;
+      color: #fff;
+      font-size: vw(24);
+    }
+    .item-control {
+      display: flex;
+      margin-top: vw(20);
+      .component-icon {
+        width: vw(66);
+        height: vw(60);
+        margin-right: vw(6);
+        opacity: .3;
+      }
+    }
   }
   // 高斯模糊
   .filter-style {
