@@ -11,23 +11,32 @@
       ></widget-description>
     </div>
 
-    <swiper ref="swiper" :options="swiperOptions">
+    <div class="layout-desktop-full craft-image-desktop">
+      <al-image
+        class="craft-image-item"
+        src="./images/craft-pc-03.png"
+      ></al-image>
+      <al-image
+        class="craft-image-item"
+        src="./images/craft-pc-02.png"
+      ></al-image>
+      <al-image
+        class="craft-image-item"
+        src="./images/craft-pc-01.png"
+      ></al-image>
+    </div>
+
+    <swiper class="layout-mobile-only" ref="swiper" :options="swiperOptions">
       <swiper-slide
         class="craft-image"
         v-for="(src, index) in images"
         :key="index"
       >
         <div class="craft-image-left">
-          <al-image
-            class="craft-image-left__self"
-            :src="src.left"
-          ></al-image>
+          <al-image class="craft-image-left__self" :src="src.left"></al-image>
         </div>
         <div class="craft-image-right">
-          <al-image
-            class="craft-image-right__self"
-            :src="src.right"
-          ></al-image>
+          <al-image class="craft-image-right__self" :src="src.right"></al-image>
         </div>
       </swiper-slide>
     </swiper>
@@ -55,6 +64,8 @@ export default {
       ],
       swiperOptions: {
         loop: true,
+        autoplay: true,
+        delay: 1000,
         on: {
           slideChange(e) {
             __this.activeIndex = e.realIndex;
@@ -113,10 +124,20 @@ export default {
     justify-content: center;
     padding-bottom: vw(87);
   }
-  .craft-image-left__self {
+  .craft-image-desktop {
+    display: flex;
+    justify-content: space-between;
   }
   .craft-image-right__self {
     width: vw(190);
+  }
+  .craft-image-desktop {
+    width: px2vw(1500);
+    padding: px2vw(100) 0 px2vw(90);
+    margin: 0 auto;
+  }
+  .craft-image-item {
+    width: px2vw(470);
   }
   @include layout-desktop-full {
     margin-top: px2vw(160);

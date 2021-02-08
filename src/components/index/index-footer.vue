@@ -26,13 +26,13 @@
         <p class="icon-copy-right">© 2020 SINGO.</p>
         <div class="icon-channel footer-pub">
           <div class="channel-svg">
-            <al-icon name="tiktok"></al-icon>
-          </div>
-          <div class="channel-svg">
             <al-icon name="weibo"></al-icon>
           </div>
           <div class="channel-svg">
             <al-icon name="wechat"></al-icon>
+          </div>
+          <div class="channel-svg">
+            <al-icon name="tiktok"></al-icon>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@
         :columns="designerDatum"
       ></text-columns>
       <div class="designer-photos-wrapper">
-        <ul class="designer-photos-list">
+        <ul class="designer-photos-list layout-mobile-only">
           <li class="designer-photo" v-for="(photo, i) in photos" :key="i">
             <div class="photo-inner">
               <span class="photo-inner-name">{{ photo.name }}</span>

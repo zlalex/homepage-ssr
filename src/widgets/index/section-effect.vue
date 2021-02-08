@@ -15,7 +15,22 @@
           >
             <div class="split-line layout-mobile-only"></div>
           </widget-description>
-          <div class="effect-swiper-control layout-desktop-full"></div>
+          <div class="effect-swiper-control layout-desktop-full">
+            <div class="item-control">
+              <al-icon
+                class="item-control-arrow"
+                name="arrowGray"
+                position="left"
+                @click="handleSwiperNext(-1)"
+              ></al-icon>
+              <al-icon
+                class="item-control-arrow"
+                name="arrowGray"
+                position="right"
+                @click="handleSwiperNext(1)"
+              ></al-icon>
+            </div>
+          </div>
           <div class="effect-swiper-card">
             <div class="effect-swiper-item">
               <!-- <al-image
@@ -66,6 +81,17 @@
                     ></al-icon>
                   </div>
                 </div>
+                <div class="effect-dots">
+                  <span
+                    class="effect-dot-item"
+                    :class="{ active: effectSwiperActiveIndex === i }"
+                    v-for="(item, i) in effectSwiperDetail"
+                    :key="i"
+                  ></span>
+                </div>
+                <p class="effect-description-desktop">
+                  {{ swiperImage.descriptionDesktop }}
+                </p>
               </div>
             </div>
           </div>
@@ -94,6 +120,8 @@ const effectSwiperDetail = [
       "亦或是精装房千篇一律、批量复制。",
       "现在就告别平庸，你的新家应该独树一帜。",
     ],
+    descriptionDesktop:
+      "旧房设计可能已经无法满足你的审美需求，亦或是精装房千篇一律、批量复制。现在就告别平庸，你的新家应该独树一帜。",
     desktopSmall: "./images/effect-swiper-pc-small-1.jpg",
     desktopLarge: "./images/effect-swiper-pc-1.jpg",
     swiperTitle: "视 觉",
@@ -110,6 +138,8 @@ const effectSwiperDetail = [
       "亦或是精装房千篇一律、批量复制。",
       "现在就告别平庸，你的新家应该独树一帜。",
     ],
+    descriptionDesktop:
+      "旧房设计可能已经无法满足你的审美需求，亦或是精装房千篇一律、批量复制。现在就告别平庸，你的新家应该独树一帜。",
     desktopSmall: "./images/effect-swiper-pc-small-2.jpg",
     desktopLarge: "./images/effect-swiper-pc-2.jpg",
     swiperTitle: "视 觉",
@@ -126,6 +156,8 @@ const effectSwiperDetail = [
       "亦或是精装房千篇一律、批量复制。",
       "现在就告别平庸，你的新家应该独树一帜。",
     ],
+    descriptionDesktop:
+      "旧房设计可能已经无法满足你的审美需求，亦或是精装房千篇一律、批量复制。现在就告别平庸，你的新家应该独树一帜。",
     desktopSmall: "./images/effect-swiper-pc-small-3.jpg",
     desktopLarge: "./images/effect-swiper-pc-3.jpg",
     swiperTitle: "视 觉",
@@ -167,6 +199,7 @@ export default {
         swiperTitle: this.effectSwiperActive.swiperTitle,
         swiperSubtitle: this.effectSwiperActive.swiperSubtitle,
         tags: this.effectSwiperActive.tags,
+        descriptionDesktop: this.effectSwiperActive.descriptionDesktop,
       };
       result.small = this.$isMobile
         ? this.effectSwiperActive.small
@@ -428,13 +461,46 @@ export default {
     }
     .effect-swiper-control {
       margin-top: px2vw(50);
+      padding-left: px2vw(270);
       height: px2vw(60);
     }
+    .item-control{
+      display: flex;
+      height: px2vw(60);
+      opacity: .3;
+    }
+    .item-control-arrow{
+      width: px2vw(66);
+    }
     .effect-swiper-item__image {
-      position: relative;
+      position: absolute;
       left: px2vw(-311);
       width: px2vw(310);
       height: px2vw(300);
+    }
+    .effect-description-desktop {
+      width: px2vw(620);
+      margin-top: px2vw(30);
+      font-size: px2vw(18);
+      line-height: px2vw(28);
+    }
+    .effect-swiper-item__inner {
+      margin-left: px2vw(70);
+      padding-top: px2vw(65);
+    }
+    .effect-dots {
+      display: flex;
+      justify-content: space-between;
+      width: px2vw(70);
+    }
+    .effect-dot-item {
+      width: px2vw(8);
+      height: px2vw(8);
+      border: 1px solid #fff;
+      border-radius: 50%;
+      &.active {
+        background-color: #fff;
+      }
     }
   }
 }
