@@ -399,6 +399,16 @@ export default {
       height: 100%;
       padding: 0;
     }
+
+    .swiper-round-active__wrapper {
+      top: px2vw(270);
+      right: auto;
+      left: px2vw(580);
+      width: px2vw(64);
+      height: px2vw(64);
+      font-size: px2vw(14);
+      line-height: px2vw(64);
+    }
     .hot-context {
       position: absolute;
       width: px2vw(450);
@@ -464,15 +474,6 @@ export default {
     .swiper-dot {
       width: px2vw(8);
       height: px2vw(8);
-    }
-    .swiper-round-active {
-      top: px2vw(270);
-      right: auto;
-      left: px2vw(580);
-      width: px2vw(64);
-      height: px2vw(64);
-      font-size: px2vw(14);
-      line-height: px2vw(64);
     }
   }
 }

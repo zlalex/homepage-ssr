@@ -69,9 +69,9 @@ export default {
   },
   methods: {
     scrollToTop() {
-      if(this.$isMobile){
+      if (this.$isMobile) {
         // document
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0);
       }
     },
   },

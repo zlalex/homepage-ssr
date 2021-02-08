@@ -1,6 +1,10 @@
 <template>
   <al-section class="widget-index-section-booking">
     <a href="javascript:void(0);" name="booking"></a>
+    <al-image
+      class="booking-form-bg layout-desktop-full"
+      src="./images/booking-bg.jpg"
+    ></al-image>
     <div class="booking-wrapper">
       <colorful-text class="booking-tltile">国际风尚</colorful-text>
       <p class="booking-more layout-mobile-only">现在预约即可了解更多。</p>
@@ -65,7 +69,7 @@
 export default {
   data() {
     return {
-      name: "aa",
+      name: "",
       tel: "",
       other: "",
       otherMore: "其他",
@@ -83,6 +87,8 @@ export default {
   padding: vw(76) 0 vw(78);
   font-size: vw(24);
   .booking-wrapper {
+    position: relative;
+    z-index: 1;
     width: vw(550);
     margin: 0 auto;
     padding-bottom: vw(78);
@@ -141,8 +147,19 @@ export default {
     color: #959595;
     font-size: vw(16);
   }
+  .booking-form-bg {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
   @include layout-desktop-full {
     // PC STYLE
+    position: relative;
+    z-index: 1;
+    margin-top: px2vw(160);
     font-size: px2vw(20);
     .booking-wrapper {
       width: vw(460);

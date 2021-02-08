@@ -3,17 +3,29 @@
     <div class="section-designer-wrapper">
       <widget-description
         title="设计五维"
+        :align-left="!$isMobile"
         :subtitle="['光影风水境，', '读写甬城十大豪宅基因。']"
-        :description="[
-          '澄庐、御玺园、比华利、江山万里、长汀云庐、新世界、新海景、钓渔台、',
-          '泊璟廷、九唐...操盘过这些耳熟能详的甬城豪宅设计师，与您1对1解析专',
-          '属方案。星杰大牌设计师团队，让你的家绽放精彩。',
-        ]"
+        :description="
+          $isMobile
+            ? [
+                '澄庐、御玺园、比华利、江山万里、长汀云庐、新世界、新海景、钓渔台、',
+                '泊璟廷、九唐...操盘过这些耳熟能详的甬城豪宅设计师，与您1对1解析专',
+                '属方案。星杰大牌设计师团队，让你的家绽放精彩。',
+              ]
+            : [
+                '澄庐、御玺园、比华利、江山万里、长汀云庐、新世界、新海景、钓渔台、泊璟廷、九唐...',
+                '操盘过这些耳熟能详的甬城豪宅设计师，与您1对1解析专属方案。星杰大牌设计师团队，让你的家绽放精彩。',
+              ]
+        "
       ></widget-description>
-      <text-columns
-        class="designer-datum-columns"
-        :columns="designerDatum"
-      ></text-columns>
+      <div class="designer-opus">
+        <text-columns class="designer-datum-columns" :columns="designerDatum">
+          <div class="designer-opus-button layout-desktop-full">预约来看展</div>
+        </text-columns>
+        <div class="designer-opus-bg layout-desktop-full">
+          <al-image src="./images/designer-opus-pc.png"></al-image>
+        </div>
+      </div>
       <div class="designer-photos-wrapper">
         <ul class="designer-photos-list layout-mobile-only">
           <li class="designer-photo" v-for="(photo, i) in photos" :key="i">
@@ -116,6 +128,44 @@ export default {
   .photo-inner-description {
     font-size: vw(14);
     line-height: vw(22);
+  }
+  .designer-opus-button {
+    margin-top: px2vw(80);
+    width: px2vw(150);
+    height: px2vw(44);
+    border: 1px solid #d52c3f;
+    border-radius: px2vw(5);
+    color: #000;
+    text-align: center;
+    line-height: px2vw(44);
+    font-size: px2vw(14);
+  }
+  @include layout-desktop-full {
+    margin-top: px2vw(160);
+    padding: 0;
+    .description-split {
+      .description-info {
+        width: auto;
+      }
+    }
+    .designer-opus {
+      position: relative;
+    }
+    .designer-opus-bg {
+      margin-top: px2vw(70);
+    }
+    .widget-description {
+      margin: 0 px2vw(210);
+    }
+
+    .designer-datum-columns {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 0;
+      padding: 0 px2vw(210);
+      text-align: left;
+    }
   }
 }
 </style>
