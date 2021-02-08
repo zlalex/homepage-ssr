@@ -18,10 +18,22 @@
           <div class="effect-swiper-control layout-desktop-full"></div>
           <div class="effect-swiper-card">
             <div class="effect-swiper-item">
-              <al-image
+              <!-- <al-image
                 class="effect-swiper-item__image"
                 :src="swiperImage.small"
-              ></al-image>
+              ></al-image> -->
+              <swiper
+                class="effect-swiper-item__image"
+                ref="swiper"
+                :options="swiperOptions"
+              >
+                <swiper-slide
+                  v-for="(src, index) in effectSwiperDetail"
+                  :key="index"
+                >
+                  <al-image :src="src.small"></al-image>
+                </swiper-slide>
+              </swiper>
               <div class="effect-swiper-item__inner">
                 <div class="effect-swiper-control layout-mobile-only">
                   <div class="item-title">
@@ -42,8 +54,16 @@
                     >
                   </div>
                   <div class="item-control">
-                    <al-icon name="arrow" position="left" @click="handleSwiperNext(-1)"></al-icon>
-                    <al-icon name="arrow" position="right" @click="handleSwiperNext(1)"></al-icon>
+                    <al-icon
+                      name="arrow"
+                      position="left"
+                      @click="handleSwiperNext(-1)"
+                    ></al-icon>
+                    <al-icon
+                      name="arrow"
+                      position="right"
+                      @click="handleSwiperNext(1)"
+                    ></al-icon>
                   </div>
                 </div>
               </div>
@@ -57,6 +77,7 @@
           <al-image class="filter-image" :src="swiperImage.large"></al-image>
         </div>
       </div>
+
       <al-image :src="swiperImage.large"></al-image>
     </div>
   </al-section>
@@ -114,12 +135,24 @@ const effectSwiperDetail = [
 ];
 export default {
   data() {
+    const __this = this;
     return {
       effectSwiperActiveIndex: 0,
       effectSwiperDetail,
+      swiperOptions: {
+        loop: true,
+        on: {
+          slideChange(e) {
+            __this.effectSwiperActiveIndex = e.realIndex;
+          },
+        },
+      },
     };
   },
   computed: {
+    swiper() {
+      return this.$refs.swiper.$swiper;
+    },
     effectSwiperActive() {
       return this.effectSwiperDetail[(this, this.effectSwiperActiveIndex)];
     },
@@ -153,6 +186,7 @@ export default {
       } else if (index > length - 1) {
         index = 0;
       }
+      this.swiper.slideTo(index + 1);
       this.effectSwiperActiveIndex = index;
     },
   },
@@ -251,6 +285,9 @@ export default {
     width: vw(240);
     border-radius: vw(20);
     overflow: hidden;
+    @include layout-mobile-only {
+      margin: 0;
+    }
   }
   .effect-swiper-item {
     display: flex;
@@ -309,7 +346,7 @@ export default {
         width: vw(66);
         height: vw(60);
         margin-right: vw(6);
-        opacity: .3;
+        opacity: 0.3;
       }
     }
   }

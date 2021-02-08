@@ -10,35 +10,65 @@
         ]"
       ></widget-description>
     </div>
-    <div class="craft-image" @click="changeActiveIndex">
-      <div class="craft-image-left">
-        <al-image
-          class="craft-image-left__self"
-          :src="activeImageIndex.left"
-        ></al-image>
-      </div>
-      <div class="craft-image-right">
-        <al-image
-          class="craft-image-right__self"
-          :src="activeImageIndex.right"
-        ></al-image>
-      </div>
-    </div>
+
+    <swiper ref="swiper" :options="swiperOptions">
+      <swiper-slide
+        class="craft-image"
+        v-for="(src, index) in images"
+        :key="index"
+      >
+        <div class="craft-image-left">
+          <al-image
+            class="craft-image-left__self"
+            :src="src.left"
+          ></al-image>
+        </div>
+        <div class="craft-image-right">
+          <al-image
+            class="craft-image-right__self"
+            :src="src.right"
+          ></al-image>
+        </div>
+      </swiper-slide>
+    </swiper>
   </al-section>
 </template>
 <script>
 export default {
   data() {
+    const __this = this;
     return {
-      activeIndex: 1,
+      activeIndex: 0,
+      images: [
+        {
+          left: `./images/section-craft-1-a.jpg`,
+          right: `./images/section-craft-1-b.png`,
+        },
+        {
+          left: `./images/section-craft-2-a.jpg`,
+          right: `./images/section-craft-2-b.png`,
+        },
+        {
+          left: `./images/section-craft-3-a.jpg`,
+          right: `./images/section-craft-3-b.png`,
+        },
+      ],
+      swiperOptions: {
+        loop: true,
+        on: {
+          slideChange(e) {
+            __this.activeIndex = e.realIndex;
+          },
+        },
+      },
     };
   },
   computed: {
     activeImageIndex() {
-      return {
-        left: `./images/section-craft-${this.activeIndex}-a.jpg`,
-        right: `./images/section-craft-${this.activeIndex}-b.png`,
-      };
+      return this.images[this.activeIndex];
+    },
+    swiper() {
+      return this.$refs.swiper.$swiper;
     },
   },
   methods: {

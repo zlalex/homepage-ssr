@@ -1,6 +1,9 @@
 <template>
   <!-- 国际热点 有轮播 -->
-  <al-section class="widget-index-section-hot">
+  <al-section
+    class="widget-index-section-hot"
+    :class="{ 'is-animate': isAnimate }"
+  >
     <div class="hot-wrapper">
       <div class="hot-context">
         <p class="hot-city-en">{{ activeSwiper.en }}</p>
@@ -37,7 +40,13 @@
           ></al-icon>
         </div>
       </div>
-      <div class="swiper-round-active">0{{ activeIndex + 1 }}</div>
+      <div class="swiper-round-active__wrapper">
+        <span
+          class="swiper-round-active"
+          :class="`active-${activeIndex}`"
+        ></span>
+        <span> 0{{ activeIndex + 1 }} </span>
+      </div>
       <div class="swiper-item-a">
         <al-image :src="activeSwiper.imageA"></al-image>
       </div>
@@ -45,9 +54,12 @@
         <al-image :src="activeSwiper.imageB"></al-image>
       </div>
     </div>
-    <al-image class="layout-mobile-only" :src="activeSwiper.mobile"></al-image>
     <al-image
-      class="layout-desktop-full"
+      class="section-hot-bg layout-mobile-only"
+      :src="activeSwiper.mobile"
+    ></al-image>
+    <al-image
+      class="section-hot-bg layout-desktop-full"
       :src="activeSwiper.desktop"
     ></al-image>
   </al-section>
@@ -56,7 +68,9 @@
 export default {
   data() {
     return {
+      isAnimate: false,
       activeIndex: 0,
+      timer: null,
       hotDetail: [
         {
           mobile: "./images/hot-1.png",
@@ -128,6 +142,9 @@ export default {
         item.imageB = `./images/hot-${i + 1}-b-pc.jpg`;
         return item;
       });
+      this.timer = setInterval(() => {
+        this.handleSwiperNext(1);
+      }, 5e3);
     }
   },
   computed: {
@@ -145,17 +162,105 @@ export default {
         index = 0;
       }
       this.activeIndex = index;
+      this.triggerAnimate();
+    },
+    triggerAnimate() {
+      if (!this.isAnimate) {
+        this.isAnimate = true;
+        setTimeout(() => {
+          this.isAnimate = false;
+        }, 1e3);
+      }
     },
   },
 };
 </script>
 <style lang="scss">
+@keyframes swiper-item-a {
+  from {
+    opacity: 0;
+    right: vw(60);
+    bottom: vw(420);
+  }
+  to {
+    right: vw(40);
+    bottom: vw(480);
+    opacity: 1;
+  }
+}
+@keyframes swiper-item-b {
+  from {
+    right: vw(60);
+    bottom: vw(420);
+    opacity: 0;
+  }
+  to {
+    left: vw(90);
+    bottom: vw(260);
+    opacity: 1;
+  }
+}
+@keyframes swiper-item-a-pc {
+  from {
+    opacity: 0;
+    right: px2vw(100);
+    bottom: px2vw(100);
+  }
+  to {
+    right: px2vw(210);
+    bottom: px2vw(250);
+    opacity: 1;
+  }
+}
+@keyframes swiper-item-b-pc {
+  from {
+    left: auto;
+    right: px2vw(1020);
+    bottom: px2vw(445);
+    opacity: 0;
+  }
+  to {
+    left: auto;
+    right: px2vw(620);
+    bottom: px2vw(345);
+    opacity: 1;
+  }
+}
+@keyframes hot-bg {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .widget-index-section-hot {
   margin-top: vw(-96);
   position: relative;
   color: #fff;
+  &.is-animate {
+    .swiper-item-a {
+      animation: swiper-item-a 1s;
+    }
+    .swiper-item-b {
+      animation: swiper-item-b 1s;
+    }
+    .section-hot-bg {
+      animation: hot-bg 1s;
+    }
+    @include layout-desktop-full {
+      .swiper-item-a {
+        animation: swiper-item-a-pc 1s;
+      }
+      .swiper-item-b {
+        animation: swiper-item-b-pc 1s;
+      }
+    }
+  }
   .hot-wrapper {
     position: absolute;
+    z-index: 10;
     top: vw(96);
     height: 100%;
     width: 100%;
@@ -244,7 +349,7 @@ export default {
       border-color: #fff;
     }
   }
-  .swiper-round-active {
+  .swiper-round-active__wrapper {
     position: absolute;
     top: vw(62);
     right: vw(90);
@@ -254,9 +359,35 @@ export default {
     font-size: vw(14);
     text-align: center;
     line-height: vw(64);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .swiper-round-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateZ(45deg);
+    border-top: 1px solid rgba(255, 255, 255, 1);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     overflow: hidden;
+    &.active-1 {
+      border-top: 1px solid rgba(255, 255, 255, 1);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      border-right: 1px solid rgba(255, 255, 255, 1);
+    }
+    &.active-2 {
+      border-top: 1px solid rgba(255, 255, 255, 1);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 1);
+      border-right: 1px solid rgba(255, 255, 255, 1);
+    }
+    &.active-3 {
+      border: 1px solid #fff;
+    }
   }
 
   @include layout-desktop-full {
@@ -306,7 +437,7 @@ export default {
       .component-icon {
         width: px2vw(66);
         height: px2vw(60);
-        opacity: 0.1;
+        opacity: 0;
       }
     }
 

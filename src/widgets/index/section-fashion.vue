@@ -18,10 +18,20 @@
         <!-- mobile -->
         <div class="layout-mobile-only">
           <div class="fashion-mobile-swiper">
+            <swiper ref="swiper" :options="swiperOptions">
+              <swiper-slide v-for="(src, index) in fashionDetail" :key="index">
+                <al-image
+                  class="fashion-mobile-swiper__active"
+                  :src="src"
+                ></al-image>
+              </swiper-slide>
+            </swiper>
+
+            <!--
             <al-image
               class="fashion-mobile-swiper__active"
               :src="swiperActive"
-            ></al-image>
+            ></al-image> -->
           </div>
           <div class="fashion-control">
             <div class="fashion-control-left">
@@ -65,7 +75,8 @@
               class="fashion-swiper-tab__desktop-item"
               v-for="(item, i) in fashionSwiperTab"
               :key="i"
-              :class="{ active: fashionSwiperActiveIndex === i }"
+              @click="handleFashionTabActive(i)"
+              :class="{ active: fashionTabActive === i }"
             >
               <span class="fashion-swiper-tab__desktop-item-name">
                 {{ item.name }}
@@ -83,10 +94,21 @@
                 mask-color="black"
                 :src="swiperPrev"
               ></al-image>
-              <al-image
-                class="fashion-swiper-desktop__image-active"
-                :src="swiperActive"
-              ></al-image>
+              <div class="fashion-swiper-desktop__image-active">
+                <!--
+                <al-image :src="swiperActive"></al-image> -->
+                <swiper ref="swiper2" :options="swiperOptions">
+                  <swiper-slide
+                    v-for="(src, index) in fashionDesktopDetail"
+                    :key="index"
+                  >
+                    <al-image
+                      class="fashion-mobile-swiper__active"
+                      :src="src"
+                    ></al-image>
+                  </swiper-slide>
+                </swiper>
+              </div>
               <al-image
                 class="fashion-swiper-desktop__image-between swiper-next-image"
                 has-mask
@@ -144,7 +166,12 @@
 <script>
 export default {
   data() {
+    const __this = this;
     return {
+      timer: null,
+      processTimer: null,
+      process: 0,
+      swiperControlActiveWidth: "",
       fashionDatum: [
         {
           title: "坚持",
@@ -165,6 +192,15 @@ export default {
           description: "精选实景案例",
         },
       ],
+      swiperOptions: {
+        loop: true,
+        on: {
+          slideChange(e) {
+            __this.fashionSwiperActiveIndex = e.realIndex;
+            __this.startSwiperTimer();
+          },
+        },
+      },
       fashionSwiperTab: [
         {
           name: "现代轻奢",
@@ -187,6 +223,7 @@ export default {
           subtitle: "French",
         },
       ],
+      fashionTabActive: 0,
       fashionSwiperActiveIndex: 0,
       fashionDetail: [
         "./images/fashion-swiper-1.jpg",
@@ -218,16 +255,11 @@ export default {
     };
   },
   computed: {
-    swiperControlActiveWidth() {
-      let length = this.fashionDesktopDetail.length;
-      if (this.$isMobile) {
-        length = this.fashionDetail.length;
-        let width =
-          ((length - this.fashionSwiperActiveIndex - 1) / length) * 100;
-        return `width: ${width}%;`;
-      }
-      let width = ((this.fashionSwiperActiveIndex + 1) * 100) / length;
-      return `width: ${width}%;`;
+    swiper() {
+      return this.$refs.swiper.$swiper;
+    },
+    swiper2() {
+      return this.$refs.swiper2.$swiper;
     },
     swiperPrev() {
       let index = this.fashionSwiperActiveIndex - 1;
@@ -254,10 +286,39 @@ export default {
       return this.fashionDesktopDetail[index];
     },
   },
+  mounted() {
+    this.startSwiperTimer();
+  },
   methods: {
-    handleSwiperNext(value) {
+    resetSwiperTimer() {
+      clearInterval(this.timer);
+      this.timer = null;
+      const mobileStart = "width: 100%; transition: none;";
+      const mobileEnd = "width: 0%; transition: width 4.5s;";
+      const desktopStart = "width: 0%; transition: none;";
+      const desktopEnd = "width: 100%; transition: width 4.5s;";
+
+      this.swiperControlActiveWidth = this.$isMobile
+        ? mobileStart
+        : desktopStart;
+      this.$nextTick(() => {
+        this.swiperControlActiveWidth = this.$isMobile ? mobileEnd : desktopEnd;
+      });
+    },
+    startSwiperTimer() {
+      this.resetSwiperTimer();
+      this.timer = setInterval(() => {
+        this.handleSwiperNext(1);
+      }, 5e3);
+    },
+    handleFashionTabActive(i) {
+      this.fashionTabActive = i;
+    },
+    handleSwiperNext(i) {
+      this.startSwiperTimer();
+      //
       let length = this.fashionDesktopDetail.length;
-      let index = this.fashionSwiperActiveIndex + value;
+      let index = this.fashionSwiperActiveIndex + i;
       if (this.$isMobile) {
         length = this.fashionDetail.length;
       }
@@ -266,6 +327,9 @@ export default {
       } else if (index > length - 1) {
         index = 0;
       }
+      this.$isMobile
+        ? this.swiper.slideTo(index + 1)
+        : this.swiper2.slideTo(index + 1);
       this.fashionSwiperActiveIndex = index;
     },
   },
@@ -382,7 +446,7 @@ export default {
     left: 0;
     height: 1px;
     background-color: #000;
-    transition: width 0.5s;
+    transition: width 4.5s;
   }
   .fashion-swiper-desktop {
     position: relative;

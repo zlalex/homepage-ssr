@@ -3,7 +3,8 @@ import throttle from 'lodash/throttle'
 import App from './App.vue'
 import Components from './components/index'
 import './styles/index.scss';
-
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import "swiper/swiper-bundle.css";
 
 const isMobile = () => {
   try {
@@ -19,6 +20,7 @@ window && window.addEventListener && window.addEventListener('resize', function 
   __isMobile()
 })
 
+Vue.use(VueAwesomeSwiper);
 Vue.config.productionTip = false
 Components.forEach(item => {
   Vue.component(item.name, item)
