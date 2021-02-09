@@ -19,7 +19,7 @@ __isMobile()
 window && window.addEventListener && window.addEventListener('resize', function () {
   __isMobile()
 })
-
+Vue.prototype.$EVENT_BUS = new Vue()
 Vue.use(VueAwesomeSwiper);
 Vue.config.productionTip = false
 Components.forEach(item => {

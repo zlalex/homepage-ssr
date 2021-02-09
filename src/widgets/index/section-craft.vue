@@ -64,8 +64,6 @@ export default {
       ],
       swiperOptions: {
         loop: true,
-        autoplay: true,
-        delay: 1000,
         on: {
           slideChange(e) {
             __this.activeIndex = e.realIndex;

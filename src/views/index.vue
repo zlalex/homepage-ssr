@@ -6,6 +6,8 @@
     <index-content></index-content>
     <index-footer></index-footer>
     <index-menu></index-menu>
+    <index-fixed-form></index-fixed-form>
+    <index-dialog-image></index-dialog-image>
   </view-page>
 </template>
 
@@ -14,13 +16,17 @@ import IndexHeader from "../components/index/index-header";
 import IndexFooter from "../components/index/index-footer";
 import IndexContent from "../components/index/index-content";
 import IndexMenu from "../components/index/index-menu";
+import IndexFixedForm from "../components/index/index-fixed-form";
+import IndexDialogImage from "../components/index/index-dialog-image";
 
 export default {
   components: {
     IndexHeader,
     IndexFooter,
     IndexContent,
-    IndexMenu
+    IndexMenu,
+    IndexFixedForm,
+    IndexDialogImage,
   },
 };
 </script>

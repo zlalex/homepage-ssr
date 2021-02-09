@@ -12,12 +12,24 @@
         :description="['立即预约观展，看家居时尚。2月28日，星期天全天。']"
       ></widget-description>
     </div>
-    <booking-button class="booking-before-button"></booking-button>
+    <booking-button
+      class="booking-before-button"
+      @click="handleBooking"
+    ></booking-button>
     <div class="booking-before-icon layout-mobile-only">
       <al-icon name="arrowSimple" position="bottom"></al-icon>
     </div>
   </al-section>
 </template>
+<script>
+export default {
+  methods: {
+    handleBooking() {
+      this.$EVENT_BUS.$emit("SHOW_POPUP");
+    },
+  },
+};
+</script>
 <style lang="scss">
 .widget-index-section-booking-before {
   margin-top: vw(100);

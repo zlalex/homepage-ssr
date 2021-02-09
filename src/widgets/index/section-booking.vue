@@ -1,6 +1,5 @@
 <template>
   <al-section class="widget-index-section-booking">
-    <a href="javascript:void(0);" name="booking"></a>
     <al-image
       class="booking-form-bg layout-desktop-full"
       src="./images/booking-bg.jpg"
@@ -115,7 +114,6 @@ export default {
   },
   methods: {
     handleFormInputFocus(e) {
-      console.log(e.name);
       this.focusInputName = e.name;
       if (e && e.name) {
         this.validate[e.name] = false;
@@ -159,7 +157,10 @@ export default {
       };
       axios.post(url, params, requestConfig).then((response) => {
         if (this.validateResponse(response)) {
-          alert(response.data.text || "预约成功");
+          this.name = this.telephone = this.other = this.otherMore = "";
+          if (this.$isMobile) {
+            this.$EVENT_BUS.$emit("SHOW_POPUP", "success");
+          }
         }
       });
     },
@@ -168,7 +169,7 @@ export default {
         response &&
         response.data &&
         response.data.type &&
-        response.data.type.toLocaleLowerCase === "success"
+        response.data.type.toLocaleLowerCase() === "success"
       ) {
         return true;
       }

@@ -9,7 +9,10 @@
       <p class="util-text-center building-info">
         本届国际别墅大宅设计展能看到什么？预约了解详情。
       </p>
-      <booking-button class="building-content-button"></booking-button>
+      <booking-button
+        @click="handleBooking"
+        class="building-content-button"
+      ></booking-button>
     </div>
 
     <div class="building-bg">
@@ -66,6 +69,16 @@
     </div>
   </al-section>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleBooking() {
+      this.$EVENT_BUS.$emit("SHOW_POPUP");
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .widget-index-section-building {

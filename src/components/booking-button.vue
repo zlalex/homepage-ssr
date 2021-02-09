@@ -1,6 +1,6 @@
 <template>
-  <div class="component-booking-button">
-    <a href="#booking" class="component-booking-button__inner">{{ text }}</a>
+  <div class="component-booking-button" @click="handleClick">
+    <a class="component-booking-button__inner">{{ text }}</a>
   </div>
 </template>
 <script>
@@ -12,6 +12,11 @@ export default {
       default: () => "预约",
     },
   },
+  methods:{
+    handleClick(){
+      this.$emit('click')
+    }
+  }
 };
 </script>
 <style lang="scss">

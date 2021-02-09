@@ -16,8 +16,11 @@
         ]"
       >
         <template #after>
-          <div class="discount-booking-button layout-desktop-full">
-            <a class="booking-anchor" href="#booking">预约来看展</a>
+          <div
+            class="discount-booking-button layout-desktop-full"
+            @click="handleBooking"
+          >
+            <a class="booking-anchor">预约来看展</a>
           </div>
         </template>
       </widget-description>
@@ -34,6 +37,15 @@
     </div>
   </al-section>
 </template>
+<script>
+export default {
+  methods: {
+    handleBooking() {
+      this.$EVENT_BUS.$emit("SHOW_POPUP");
+    },
+  },
+};
+</script>
 <style lang="scss">
 .widget-index-section-discount {
   padding-top: vw(100);

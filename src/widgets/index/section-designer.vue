@@ -20,7 +20,7 @@
       ></widget-description>
       <div class="designer-opus">
         <text-columns class="designer-datum-columns" :columns="designerDatum">
-          <div class="designer-opus-button layout-desktop-full">预约来看展</div>
+          <div @click="handleBooking" class="designer-opus-button layout-desktop-full">预约来看展</div>
         </text-columns>
         <div class="designer-opus-bg layout-desktop-full">
           <al-image src="./images/designer-opus-pc.png"></al-image>
@@ -113,7 +113,7 @@
                 </p>
               </div>
             </div>
-            <div class="designer-booking-button">预约</div>
+            <div class="designer-booking-button" @click="handleBooking">预约</div>
           </div>
           <!-- swiper -->
           <div class="designer-swiper-desktop__wrapper" v-if="!$isMobile">
@@ -365,6 +365,9 @@ export default {
     },
   },
   methods: {
+    handleBooking() {
+      this.$EVENT_BUS.$emit("SHOW_POPUP");
+    },
     getPhotos() {
       desktopDesignerDescription.forEach((item) => {
         const __name = item.name.replace(/\s+/, "");
