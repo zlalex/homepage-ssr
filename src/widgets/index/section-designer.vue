@@ -38,6 +38,8 @@
             <al-image :src="photo.url"></al-image>
           </li>
         </ul>
+        <!-- desktop large swiper -->
+        <div class="layout-desktop-full"></div>
       </div>
     </div>
   </al-section>

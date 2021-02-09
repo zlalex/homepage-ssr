@@ -1,73 +1,13 @@
 @import "./entry";
 
 .layout-mobile-only {
-  @include layout-tablet-desktop-large-desktop-only {
+  @include layout-desktop-full {
     display: none !important;
   }
 }
 
 .layout-desktop-full {
   @include layout-mobile-only {
-    display: none !important;
-  }
-}
-
-.layout-mobile-tablet-only {
-  @include layout-desktop-large-desktop-only {
-    display: none !important;
-  }
-}
-
-.layout-mobile-tablet-desktop-only {
-  @include layout-large-desktop-only {
-    display: none !important;
-  }
-}
-
-.layout-tablet-only {
-  @include layout-mobile-only {
-    display: none !important;
-  }
-
-  @include layout-desktop-large-desktop-only {
-    display: none !important;
-  }
-}
-
-.layout-tablet-desktop-only {
-  @include layout-mobile-only {
-    display: none !important;
-  }
-
-  @include layout-large-desktop-only {
-    display: none !important;
-  }
-}
-
-.layout-tablet-desktop-large-desktop-only {
-  @include layout-mobile-only {
-    display: none !important;
-  }
-}
-
-.layout-desktop-only {
-  @include layout-mobile-tablet-only {
-    display: none !important;
-  }
-
-  @include layout-large-desktop-only {
-    display: none !important;
-  }
-}
-
-.layout-desktop-large-desktop-only {
-  @include layout-mobile-tablet-only {
-    display: none !important;
-  }
-}
-
-.layout-large-desktop-only {
-  @include layout-mobile-tablet-desktop-only {
     display: none !important;
   }
 }

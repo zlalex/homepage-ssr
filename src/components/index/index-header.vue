@@ -3,6 +3,9 @@
     <div class="index-header-logo">
       <al-icon name="logo"></al-icon>
     </div>
+    <colorful-text class="layout-desktop-full index-title">
+      EXPO OF INTERIOR DESIGN TREND
+    </colorful-text>
     <div class="index-header-menu">
       <al-icon name="menu"></al-icon>
     </div>
@@ -19,6 +22,9 @@ export default {};
   align-items: center;
   padding: 0 vw(40);
   background-color: #fff;
+  .index-title {
+    font-size: px2vw(18);
+  }
   .index-header-logo,
   .index-header-menu {
     @include space-between;
