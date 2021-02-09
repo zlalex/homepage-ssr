@@ -52,7 +52,17 @@
             class="designer-swiper-widget__line"
             src="./images/designer-icon-line.png"
           />
-          <div class="designer-swiper-group"></div>
+          <div class="designer-swiper-group">
+            <span
+              class="group-item"
+              :class="{ active: groupIndex === group }"
+              v-for="group in 4"
+              :key="group"
+              @click="handleGroupClick(group)"
+            >
+              {{ group }}
+            </span>
+          </div>
           <a href="javascript:void(0);" class="designer-info-more"
             >了解更多 +</a
           >
@@ -341,6 +351,17 @@ export default {
     swiper() {
       return this.$refs.swiper.$swiper;
     },
+    groupIndex() {
+      if (!this.activeIndex) {
+        return 1;
+      }
+      const __index = Math.ceil(this.activeIndex / 5);
+      const __gap = this.activeIndex % 5;
+      if (!__gap) {
+        return __index + 1;
+      }
+      return __index;
+    },
   },
   methods: {
     getPhotos() {
@@ -373,6 +394,11 @@ export default {
           };
         }
       });
+    },
+    handleGroupClick(index) {
+      const __index = (index - 1) * 5;
+      this.swiper.slideTo(__index);
+      this.activeIndex = __index;
     },
     handleSwiperNext(value) {
       let length = this.photos.length;
@@ -587,6 +613,32 @@ export default {
   }
   .designer-design-info__subtitle {
     font-size: px2vw(16);
+  }
+  .designer-swiper-group {
+    position: absolute;
+    top: px2vw(145);
+    left: px2vw(320);
+    width: px2vw(60);
+    height: px2vw(740);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: px2vw(142) 0;
+  }
+  .group-item {
+    width: px2vw(60);
+    height: px2vw(60);
+    border-radius: 50%;
+    text-align: center;
+    line-height: px2vw(60);
+    color: transparent;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    &.active,
+    &:hover {
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   }
 
   @include layout-desktop-full {
