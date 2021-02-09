@@ -13,7 +13,14 @@
       ></widget-description>
     </div>
     <div class="patent-image">
-      <al-image src="./images/section-patent-bg.png"></al-image>
+      <al-image
+        class="layout-desktop-full"
+        src="./images/patent-bg-pc.png"
+      ></al-image>
+      <al-image
+        class="layout-mobile-only"
+        src="./images/section-patent-bg.png"
+      ></al-image>
     </div>
   </al-section>
 </template>
@@ -28,6 +35,29 @@
   .patent-image {
     margin: 0 auto;
     padding-top: vw(100);
+  }
+  @include layout-desktop-full {
+    padding: 0;
+    .patent-wrapper {
+      position: relative;
+    }
+    .patent-description {
+      position: absolute;
+      top: px2vw(125);
+      left: px2vw(90);
+      .description-title {
+        margin-bottom: px2vw(10);
+        font-size: px2vw(20);
+      }
+      .description-subtitle {
+        font-size: px2vw(30);
+        line-height: px2vw(40);
+      }
+    }
+    .patent-image {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 </style>

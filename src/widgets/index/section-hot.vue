@@ -27,7 +27,7 @@
             :key="j"
           ></span>
         </div>
-        <div class="hot-swiper-control">
+        <div class="hot-swiper-control layout-mobile-only">
           <al-icon
             name="arrowGray"
             position="left"
@@ -204,7 +204,7 @@ export default {
   from {
     opacity: 0;
     right: px2vw(100);
-    bottom: px2vw(100);
+    bottom: px2vw(250);
   }
   to {
     right: px2vw(210);
@@ -215,8 +215,8 @@ export default {
 @keyframes swiper-item-b-pc {
   from {
     left: auto;
-    right: px2vw(1020);
-    bottom: px2vw(445);
+    right: px2vw(820);
+    bottom: px2vw(345);
     opacity: 0;
   }
   to {
@@ -226,28 +226,19 @@ export default {
     opacity: 1;
   }
 }
-@keyframes hot-bg {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 .widget-index-section-hot {
   margin-top: vw(-96);
   position: relative;
   color: #fff;
   &.is-animate {
-    .swiper-item-a {
-      animation: swiper-item-a 1s;
-    }
-    .swiper-item-b {
-      animation: swiper-item-b 1s;
-    }
-    .section-hot-bg {
-      animation: hot-bg 1s;
+    @include layout-mobile-only {
+      .swiper-item-a {
+        animation: swiper-item-a 1s;
+      }
+      .swiper-item-b {
+        animation: swiper-item-b 1s;
+      }
     }
     @include layout-desktop-full {
       .swiper-item-a {
@@ -441,14 +432,6 @@ export default {
       margin-top: px2vw(20);
       line-height: px2vw(22);
       font-size: px2vw(14);
-    }
-
-    .hot-swiper-control {
-      .component-icon {
-        width: px2vw(66);
-        height: px2vw(60);
-        opacity: 0;
-      }
     }
 
     .swiper-item-a {

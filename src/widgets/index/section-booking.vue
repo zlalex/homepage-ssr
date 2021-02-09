@@ -79,13 +79,13 @@ export default {
 </script>
 <style lang="scss">
 .widget-index-section-booking {
+  padding: vw(76) 0 vw(78);
+  font-size: vw(24);
   // MOBILE FISRT
   .flex-pub {
     display: flex;
     align-items: center;
   }
-  padding: vw(76) 0 vw(78);
-  font-size: vw(24);
   .booking-wrapper {
     position: relative;
     z-index: 1;
@@ -159,12 +159,16 @@ export default {
     // PC STYLE
     position: relative;
     z-index: 1;
-    margin-top: px2vw(160);
+    padding: 0;
+    margin: px2vw(160) 0;
+    height: px2vw(960);
     font-size: px2vw(20);
     .booking-wrapper {
-      width: vw(460);
-      margin: 0 auto;
-      padding: 0 px2vw(198);
+      width: px2vw(694);
+      padding-top: px2vw(245);
+      padding-bottom: 0;
+      margin: 0;
+      margin-left: px2vw(460);
       align-items: flex-start;
       border: none;
     }
@@ -174,6 +178,7 @@ export default {
     }
     .booking-more {
       margin-top: px2vw(18);
+      margin-bottom: px2vw(140);
       font-size: px2vw(36);
       font-weight: bold;
       color: #1b1b1b;

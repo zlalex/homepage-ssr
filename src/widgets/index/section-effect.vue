@@ -89,7 +89,7 @@
                     :key="i"
                   ></span>
                 </div>
-                <p class="effect-description-desktop">
+                <p class="effect-description-desktop layout-desktop-full">
                   {{ swiperImage.descriptionDesktop }}
                 </p>
               </div>

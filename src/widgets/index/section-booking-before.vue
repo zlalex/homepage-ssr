@@ -30,5 +30,11 @@
     height: vw(14);
     margin: vw(100) auto 0;
   }
+  @include layout-desktop-full {
+    margin-top: px2vw(180);
+    .booking-before-wrapper {
+      margin-bottom: px2vw(35);
+    }
+  }
 }
 </style>

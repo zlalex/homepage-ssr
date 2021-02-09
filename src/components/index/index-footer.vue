@@ -41,6 +41,11 @@
       <div class="footer-menu pub-flex">
         <p v-for="(item, index) in menuList" :key="index">{{ item }}</p>
       </div>
+      <al-icon
+        @click="scrollToTop"
+        class="icon-footer-back"
+        name="footerBack"
+      ></al-icon>
       <div class="footer-company-desk pub-flex">
         <div class="footer-company-related">
           <p class="footer-time">© 2021 SINGO.</p>
@@ -70,8 +75,9 @@ export default {
   methods: {
     scrollToTop() {
       if (this.$isMobile) {
-        // document
         window.scrollTo(0, 0);
+      } else {
+        document.querySelector(".inner-scroll").scrollTop = 0;
       }
     },
   },
@@ -125,16 +131,16 @@ export default {
   .channel-svg {
     width: vw(34);
     height: vw(26);
-    // border: 1px solid red;
   }
   @include layout-desktop-full {
+    position: relative;
+    font-size: px2vw(15);
+    line-height: 1;
     .pub-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    font-size: px2vw(15);
-    line-height: 1;
     .footer-content-desk {
       width: px2vw(1004);
       margin: 0 auto;
@@ -166,6 +172,13 @@ export default {
     }
     .footer-copy {
       padding-left: px2vw(80);
+    }
+    .icon-footer-back {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: px2vw(96);
+      transform: translateX(-50%);
     }
   }
 }
