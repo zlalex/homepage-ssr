@@ -464,12 +464,12 @@ export default {
       padding-left: px2vw(270);
       height: px2vw(60);
     }
-    .item-control{
+    .item-control {
       display: flex;
       height: px2vw(60);
-      opacity: .3;
+      opacity: 0.3;
     }
-    .item-control-arrow{
+    .item-control-arrow {
       width: px2vw(66);
     }
     .effect-swiper-item__image {

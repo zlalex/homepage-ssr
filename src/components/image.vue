@@ -1,6 +1,7 @@
 <template>
   <div
     class="component-image"
+    @click="handleImageClick"
     :class="[
       maskColor,
       hasMask ? 'has-mask' : '',
@@ -18,6 +19,11 @@ export default {
     filterBlur: Boolean,
     hasMask: Boolean,
     maskColor: String,
+  },
+  methods: {
+    handleImageClick() {
+      this.$emit("click");
+    },
   },
 };
 </script>

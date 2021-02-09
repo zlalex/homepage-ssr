@@ -104,20 +104,27 @@
             </div>
             <div class="designer-booking-button">预约</div>
           </div>
-
           <!-- swiper -->
-          <div class="designer-swiper-desktop" v-if="!$isMobile">
-            <div
-              class="designer-small-avatar"
-              v-for="(item, i) in photos"
-              :key="i"
+          <div class="designer-swiper-desktop__wrapper" v-if="!$isMobile">
+            <swiper
+              class="designer-swiper-desktop"
+              ref="swiper"
+              :options="galleryTop"
             >
-              <al-image
-                v-if="item.avatar"
-                class="designer-small-avatar-image"
-                :src="item.avatar ? item.avatar.small : ''"
-              ></al-image>
-            </div>
+              <swiper-slide
+                class="designer-small-avatar"
+                v-for="(item, i) in photos"
+                :key="i"
+              >
+                <al-image
+                  v-if="item.avatar"
+                  @click="handleAvatarClick(i)"
+                  class="designer-small-avatar-image"
+                  :class="{ active: i === activeIndex }"
+                  :src="item.avatar ? item.avatar.small : ''"
+                ></al-image>
+              </swiper-slide>
+            </swiper>
           </div>
         </div>
         <al-image
@@ -279,11 +286,13 @@ const desktopDesignerDescription = [
 ];
 const getAvatarPath = (size, name) =>
   `./images/designer-desktop/${size}/${name}.jpg`;
+
 export default {
   mounted() {
     this.getPhotos();
   },
   data() {
+    const __this = this;
     return {
       names,
       designerDescription,
@@ -311,6 +320,15 @@ export default {
       photos: [],
       groups: [],
       activeIndex: 0,
+      galleryTop: {
+        direction: "vertical",
+        slidesPerView: 5,
+        on: {
+          slideChange(e) {
+            __this.activeIndex = e.realIndex;
+          },
+        },
+      },
     };
   },
   computed: {
@@ -319,6 +337,9 @@ export default {
         return this.photos[this.activeIndex];
       }
       return { avatar: {}, description: {} };
+    },
+    swiper() {
+      return this.$refs.swiper.$swiper;
     },
   },
   methods: {
@@ -352,17 +373,22 @@ export default {
           };
         }
       });
-      console.log(this.photos);
     },
     handleSwiperNext(value) {
       let length = this.photos.length;
       let index = this.activeIndex + value;
+      let swiperIndex = index;
       if (index < 0) {
-        index = length - 1;
+        swiperIndex = index = length - 1;
+      } else if (index > length - 5 && index < length - 1) {
+        swiperIndex = length - 5;
       } else if (index > length - 1) {
-        index = 0;
+        swiperIndex = index = 0;
       }
-      // this.swiper.slideTo(index + 1);
+      this.swiper.slideTo(swiperIndex);
+      this.activeIndex = index;
+    },
+    handleAvatarClick(index) {
       this.activeIndex = index;
     },
   },
@@ -458,11 +484,27 @@ export default {
     overflow: hidden;
   }
   .designer-small-avatar-image {
+    position: relative;
     width: px2vw(200);
     height: px2vw(120);
     margin-bottom: px2vw(35);
     border-radius: px2vw(10);
     overflow: hidden;
+    &.active {
+      &::before {
+        content: "";
+        display: none;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      width: 110%;
+      height: 110%;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
   }
   .designer-design-theme {
     position: absolute;
