@@ -5,6 +5,10 @@
       class="booking-form-bg layout-desktop-full"
       src="./images/booking-bg.jpg"
     ></al-image>
+    <al-image
+      class="booking-large-icon layout-desktop-full"
+      :src="iconPath"
+    ></al-image>
     <div class="booking-wrapper">
       <colorful-text class="booking-tltile">国际风尚</colorful-text>
       <p class="booking-more layout-mobile-only">现在预约即可了解更多。</p>
@@ -16,13 +20,13 @@
       </div>
       <div class="booking-item layout-mobile-only">
         <div class="booking-item-info flex-pub">
-          <div class="booking-info-img"><img src="" alt="" /></div>
+          <al-icon name="time" class="booking-info-img"></al-icon>
           <p class="booking-info-text">
             <span>2021.2.28</span><span>周日</span><span>全天</span>
           </p>
         </div>
         <div class="booking-item-info flex-pub">
-          <div class="booking-info-img"><img src="" alt="" /></div>
+          <al-icon name="telephone" class="booking-info-img"></al-icon>
           <p class="booking-info-text">
             <span>预约热线</span><span>400</span><span>0574</span
             ><span>689</span>
@@ -34,29 +38,46 @@
           <form-input
             label="您的称呼*"
             class="booking-form-input"
+            name="name"
+            :status="validate.name"
+            @focus="handleFormInputFocus"
+            @blur="handleFormInputBlur"
             v-model="name"
           />
           <form-input
             label="联系方式*"
             class="booking-form-input"
-            v-model="tel"
+            name="telephone"
+            max-length="11"
+            :status="validate.telephone"
+            @focus="handleFormInputFocus"
+            @blur="handleFormInputBlur"
+            v-model="telephone"
           />
           <form-input
-            placeholder="其他需求(非必填)"
+            name="other"
+            placeholder="风格需求(非必填)"
             class="booking-form-input"
+            @focus="handleFormInputFocus"
             v-model="other"
           />
-          <div class="booking-submit layout-mobile-only">预约看展</div>
+          <div @click="handleSubmit" class="booking-submit layout-mobile-only">
+            预约看展
+          </div>
         </div>
         <div
           class="booking-user-info booking-user-info-desk layout-desktop-full"
         >
           <form-input-textarea
+            name="otherMore"
             placeholder="其他需求(非必填)"
             class="booking-form-input booking-form-input-desk"
+            @focus="handleFormInputFocus"
             v-model="otherMore"
           />
-          <div class="booking-submit layout-desktop-full">预约看展</div>
+          <div @click="handleSubmit" class="booking-submit layout-desktop-full">
+            预约看展
+          </div>
         </div>
       </div>
       <p class="booking-tip layout-mobile-only">
@@ -66,14 +87,52 @@
   </al-section>
 </template>
 <script>
+const reg = /^1[0-9]{10}$/;
 export default {
   data() {
     return {
       name: "",
-      tel: "",
+      telephone: "",
       other: "",
-      otherMore: "其他",
+      otherMore: "",
+      focusInputName: "time",
+      validate: {
+        name: false,
+        telephone: false,
+      },
     };
+  },
+  computed: {
+    iconPath() {
+      return `./images/booking-${this.focusInputName}-large.png`;
+    },
+  },
+  methods: {
+    handleFormInputFocus(e) {
+      console.log(e.name);
+      this.focusInputName = e.name;
+      if (e && e.name) {
+        this.validate[e.name] = false;
+      }
+    },
+    handleFormInputBlur(e) {
+      if (e && e.name) {
+        this.validate[e.name] = !e.value;
+      }
+    },
+    handleSubmit() {
+      if (this.validate.name || this.validate.telephone) {
+        this.validate.name = !this.name;
+        this.validate.telephone = !this.telephone;
+        return;
+      }
+
+      if (!reg.test(this.telephone)) {
+        this.telephone = "";
+        this.validate.telephone = !this.telephone;
+        return;
+      }
+    },
   },
 };
 </script>
@@ -119,7 +178,6 @@ export default {
     margin-right: vw(24);
     width: vw(30);
     height: vw(30);
-    border: 1px solid red;
   }
   .booking-info-text {
     font-weight: bold;
@@ -207,6 +265,14 @@ export default {
       line-height: px2vw(60);
       border-radius: px2vw(6);
       font-size: px2vw(18);
+    }
+    .booking-large-icon {
+      position: absolute;
+      z-index: 10;
+      top: px2vw(200);
+      right: px2vw(418);
+      width: px2vw(456);
+      height: px2vw(320);
     }
   }
 }

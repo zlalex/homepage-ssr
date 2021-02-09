@@ -10,6 +10,8 @@ import weibo from './icon-weibo.svg';
 import wechat from './icon-wechat.svg';
 import footerBack from './icon-footer-back.svg'
 import arrowSimple from './icon-arrow-simple.svg';
+import time from './icon-time.png';
+import telephone from './icon-telephone.png';
 
 export default {
   logo,
@@ -22,5 +24,7 @@ export default {
   wechat,
   arrowGray,
   footerBack,
-  arrowSimple
+  arrowSimple,
+  time,
+  telephone
 }

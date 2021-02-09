@@ -1,16 +1,23 @@
 <template>
-  <div class="component-form-input">
+  <div class="component-form-input" :class="{ focus }">
     <label class="form-input-label__wrapper">
       <p class="form-input-label" v-if="label">{{ label }}</p>
-      <div class="form-input" v-if="value">
+      <div class="form-input" v-show="!status">
         <input
+          ref="input"
+          class="form-input-inner"
           type="text"
+          :max-length="maxLength"
           :value="value"
           :placeholder="placeholder"
           @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
         />
       </div>
-      <div class="form-input form-tip" v-else>您可能遗忘了这里。</div>
+      <div class="form-input form-tip" @click="handleTipFocus" v-show="status">
+        您可能遗忘了这里。
+      </div>
     </label>
   </div>
 </template>
@@ -21,11 +28,41 @@ export default {
     label: String,
     placeholder: String,
     value: String,
-    status: Boolean
+    name: String,
+    status: Boolean,
+    maxLength: String
+  },
+  data() {
+    return {
+      focus: false,
+    };
   },
   methods: {
     handleInput(event) {
       this.$emit("input", event.target.value);
+    },
+    handleTipFocus() {
+      this.$emit("focus", {
+        value: "",
+        name: this.name,
+      });
+      this.$nextTick(() => {
+        this.$refs.input.focus();
+      });
+    },
+    handleFocus(event) {
+      this.$emit("focus", {
+        value: event.target.value,
+        name: this.name,
+      });
+      this.focus = !this.focus;
+    },
+    handleBlur(event) {
+      this.$emit("blur", {
+        value: event.target.value,
+        name: this.name,
+      });
+      this.focus = !this.focus;
     },
   },
 };
@@ -39,6 +76,9 @@ export default {
   border: 1px solid #d8dbe2;
   border-radius: vw(10);
   overflow: hidden;
+  &.focus {
+    border: 1px solid #db3f4b;
+  }
   .form-input-label {
     padding-right: vw(34);
     color: #959595;
@@ -51,12 +91,16 @@ export default {
   .form-input {
     flex: 1;
     height: 100%;
-    input {
-      padding-right: vw(6);
-      width: 100%;
-      height: 100%;
-      border: none;
-      outline: none;
+  }
+  .form-input-inner {
+    padding-right: vw(6);
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: vw(24);
+    &::-webkit-input-placeholder {
+      color: #767882;
     }
   }
   .form-tip {
@@ -74,10 +118,9 @@ export default {
     .form-input-label {
       padding-right: px2vw(24);
     }
-    .form-input {
-      input {
-        padding-right: px2vw(6);
-      }
+    .form-input-inner {
+      font-size: px2vw(14);
+      padding-right: px2vw(6);
     }
     .form-tip {
       font-size: px2vw(14);

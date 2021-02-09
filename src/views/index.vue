@@ -5,6 +5,7 @@
     </div>
     <index-content></index-content>
     <index-footer></index-footer>
+    <index-menu></index-menu>
   </view-page>
 </template>
 
@@ -12,12 +13,14 @@
 import IndexHeader from "../components/index/index-header";
 import IndexFooter from "../components/index/index-footer";
 import IndexContent from "../components/index/index-content";
+import IndexMenu from "../components/index/index-menu";
 
 export default {
   components: {
     IndexHeader,
     IndexFooter,
     IndexContent,
+    IndexMenu
   },
 };
 </script>
