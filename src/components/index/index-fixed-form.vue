@@ -1,5 +1,5 @@
 <template>
-  <div class="component-index-fixed-form">
+  <div class="component-index-fixed-form" v-show="!visibile">
     <div
       @click="handleCloseMask"
       v-if="showPopup || showSuccessPopup"
@@ -24,30 +24,35 @@
         src="./images/booking-popup-bg.svg"
       ></al-image>
       <al-image
-        class="fixed-form-bg layout-desktop-full"
+        v-show="desktopShow"
+        class="fixed-form-bg layout-desktop-full booking-desktop-bg"
         src="./images/booking-fixed-bg-pc.svg"
       ></al-image>
       <al-image
-        class="fixed-form-bg layout-desktop-full"
+        v-show="desktopShowSuccess"
+        class="fixed-form-bg layout-desktop-full booking-desktop-success-bg"
         src="./images/booking-success-pc.svg"
       ></al-image>
     </div>
+    <!-- COMMON FORM -->
     <form-input
-      label="您的称呼*"
+      :label="$isMobile ? '您的称呼*' : ''"
       class="booking-form-input form-input-name"
       name="name"
-      :status="validate.name"
+      :normal="!$isMobile"
+      :status="$isMobile ? validate.name : false"
       @focus="handleFormInputFocus"
       @blur="handleFormInputBlur"
       v-show="showFormInput"
       v-model="name"
     />
     <form-input
-      label="联系方式*"
+      :label="$isMobile ? '联系方式*' : ''"
       class="booking-form-input form-input-telephone"
       name="telephone"
       max-length="11"
-      :status="validate.telephone"
+      :normal="!$isMobile"
+      :status="$isMobile ? validate.telephone : false"
       @focus="handleFormInputFocus"
       @blur="handleFormInputBlur"
       v-show="showFormInput"
@@ -85,7 +90,13 @@ export default {
       },
       showPopup: false,
       showSuccessPopup: false,
+      desktopShow: true,
+      desktopShowSuccess: false,
+      timer: null,
     };
+  },
+  props: {
+    visibile: Boolean,
   },
   computed: {
     iconPath() {
@@ -95,7 +106,7 @@ export default {
       if (this.$isMobile) {
         return this.showPopup;
       }
-      return true;
+      return this.desktopShow;
     },
   },
   mounted() {
@@ -106,6 +117,14 @@ export default {
         type === "success"
           ? this.handleShowSuccessPopup()
           : this.triggerPopup();
+      } else {
+        this.formFocus = true;
+        clearTimeout(this.timer)
+        this.timer = null
+        this.timer = setTimeout(() => {
+          // TODO
+          this.formFocus = false;
+        });
       }
     });
   },
@@ -162,10 +181,14 @@ export default {
       };
       axios.post(url, params, requestConfig).then((response) => {
         if (this.validateResponse(response)) {
-          // alert(response.data.text || "预约成功");
           this.name = this.telephone = this.other = this.otherMore = "";
-          this.showPopup = false;
-          this.showSuccessPopup = true;
+          if (this.$isMobile) {
+            this.showPopup = false;
+            this.showSuccessPopup = true;
+          } else {
+            this.desktopShow = false;
+            this.desktopShowSuccess = true;
+          }
         }
       });
     },
@@ -242,6 +265,45 @@ export default {
     font-size: vw(28);
     font-weight: bold;
     color: #ffffff;
+  }
+  .booking-desktop-success-bg,
+  .booking-desktop-bg {
+    width: px2vw(1720);
+    margin: 0 auto px2vw(50);
+    border: px2vw(2) solid transparent;
+    border-radius: px2vw(20);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    &.active {
+      border: px2vw(2) solid #d52c3f;
+    }
+  }
+  @include layout-desktop-full {
+    .booking-submit,
+    .booking-form-input {
+      bottom: px2vw(84);
+      font-size: px2vw(24);
+      width: px2vw(270);
+      height: px2vw(80);
+      .form-input-inner {
+        background: transparent;
+      }
+    }
+    .form-input-name {
+      left: px2vw(685);
+    }
+    .form-input-telephone {
+      left: auto;
+      right: px2vw(500);
+    }
+    .booking-submit {
+      right: px2vw(150);
+      left: auto;
+      line-height: px2vw(90);
+      border-radius: px2vw(10);
+      font-size: px2vw(28);
+      color: transparent;
+      background: transparent;
+    }
   }
 }
 </style>

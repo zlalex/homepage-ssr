@@ -8,6 +8,9 @@ import arrowGray from "./icon-arrow-gray.svg";
 import tiktok from './icon-tiktok.svg';
 import weibo from './icon-weibo.svg';
 import wechat from './icon-wechat.svg';
+import tiktokActive from './icon-tiktok-active.svg';
+import weiboActive from './icon-weibo-active.svg';
+import wechatActive from './icon-wechat-active.svg';
 import footerBack from './icon-footer-back.svg'
 import arrowSimple from './icon-arrow-simple.svg';
 import time from './icon-time.png';
@@ -26,5 +29,8 @@ export default {
   footerBack,
   arrowSimple,
   time,
-  telephone
+  telephone,
+  tiktokActive,
+  weiboActive,
+  wechatActive
 }

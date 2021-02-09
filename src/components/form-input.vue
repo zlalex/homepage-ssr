@@ -1,5 +1,5 @@
 <template>
-  <div class="component-form-input" :class="{ focus }">
+  <div class="component-form-input" :class="{ focus: focus && !normal }">
     <label class="form-input-label__wrapper">
       <p class="form-input-label" v-if="label">{{ label }}</p>
       <div class="form-input" v-show="!status">
@@ -30,7 +30,8 @@ export default {
     value: String,
     name: String,
     status: Boolean,
-    maxLength: String
+    maxLength: String,
+    normal: Boolean
   },
   data() {
     return {

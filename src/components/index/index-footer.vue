@@ -25,13 +25,13 @@
       <div class="footer-icon footer-pub">
         <p class="icon-copy-right">© 2020 SINGO.</p>
         <div class="icon-channel footer-pub">
-          <div class="channel-svg">
+          <a href="https://weibo.com/xingjienb?sudaref=www.xingjiesj.com&is_all=1" target="_blank" class="channel-svg">
             <al-icon name="weibo"></al-icon>
-          </div>
-          <div class="channel-svg">
+          </a>
+          <div class="channel-svg" @click="handleShowCode('wechat')">
             <al-icon name="wechat"></al-icon>
           </div>
-          <div class="channel-svg">
+          <div class="channel-svg" @click="handleShowCode('tiktok')">
             <al-icon name="tiktok"></al-icon>
           </div>
         </div>
@@ -80,6 +80,9 @@ export default {
         document.querySelector(".inner-scroll").scrollTop = 0;
       }
     },
+    handleShowCode(name){
+      this.$EVENT_BUS.$emit('SHOW_DIALOG',name)
+    }
   },
 };
 </script>

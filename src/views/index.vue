@@ -6,7 +6,7 @@
     <index-content></index-content>
     <index-footer></index-footer>
     <index-menu></index-menu>
-    <index-fixed-form></index-fixed-form>
+    <index-fixed-form :visibile="visibile"></index-fixed-form>
     <index-dialog-image></index-dialog-image>
   </view-page>
 </template>
@@ -27,6 +27,37 @@ export default {
     IndexMenu,
     IndexFixedForm,
     IndexDialogImage,
+  },
+  data() {
+    return {
+      visibile: false,
+    };
+  },
+  mounted() {
+    const innerHeight = window.innerHeight;
+    window.addEventListener("scroll", () => {
+      const scrollHeight = document.body.scrollHeight - innerHeight * 2;
+      const scrollY = window.scrollY;
+      if (scrollY > scrollHeight && !this.visibile) {
+        this.visibile = true;
+      } else if (scrollY < scrollHeight && this.visibile) {
+        this.visibile = false;
+      }
+    });
+    if (!this.$isMobile) {
+      const __this = this;
+      document
+        .querySelector(".inner-scroll")
+        .addEventListener("scroll", function () {
+          const scrollHeight = this.scrollHeight - innerHeight * 2;
+          const scrollY = this.scrollTop;
+          if (scrollY > scrollHeight && !__this.visibile) {
+            __this.visibile = true;
+          } else if (scrollY < scrollHeight && __this.visibile) {
+            __this.visibile = false;
+          }
+        });
+    }
   },
 };
 </script>
