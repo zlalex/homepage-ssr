@@ -87,7 +87,10 @@
   </al-section>
 </template>
 <script>
+import axios from "axios";
+import throttle from "lodash/throttle";
 const reg = /^1[0-9]{10}$/;
+
 export default {
   data() {
     return {
@@ -106,6 +109,9 @@ export default {
     iconPath() {
       return `./images/booking-${this.focusInputName}-large.png`;
     },
+  },
+  mounted() {
+    this.getBookingAsync = throttle(this.getBookingAsync, 1e3);
   },
   methods: {
     handleFormInputFocus(e) {
@@ -132,6 +138,41 @@ export default {
         this.validate.telephone = !this.telephone;
         return;
       }
+      this.getBookingAsync();
+    },
+    getBookingAsync() {
+      const url =
+        "https://admin.atjia.com/api_cms/busiContentActiveResult/addCusIds";
+      const params = {
+        activeName: this.name, //姓名
+        activePhone: this.telephone, //手机号
+        activeType: "1", //活动类型 线下(必填，固定值)
+        content: this.other || "", //活动特殊需求
+        code: "AC202102090001", //活动编码 (必填)
+      };
+      const requestConfig = {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          appId: this.$isMobile ? "client_app" : "pc_front",
+          currentRegion: 330200,
+        },
+      };
+      axios.post(url, params, requestConfig).then((response) => {
+        if (this.validateResponse(response)) {
+          alert(response.data.text || "预约成功");
+        }
+      });
+    },
+    validateResponse(response) {
+      if (
+        response &&
+        response.data &&
+        response.data.type &&
+        response.data.type.toLocaleLowerCase === "success"
+      ) {
+        return true;
+      }
+      return false;
     },
   },
 };

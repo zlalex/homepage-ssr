@@ -52,6 +52,7 @@
             class="designer-swiper-widget__line"
             src="./images/designer-icon-line.png"
           />
+          <p class="designer-swiper-group__active">GROUP{{ groupIndex }}</p>
           <div class="designer-swiper-group">
             <span
               class="group-item"
@@ -599,7 +600,6 @@ export default {
     position: absolute;
     bottom: px2vw(286);
     right: px2vw(540);
-    // margin-top: px2vw(55);
   }
   .design-info-description__item {
     font-size: px2vw(15);
@@ -640,7 +640,13 @@ export default {
       background-color: rgba(0, 0, 0, 0.3);
     }
   }
-
+  .designer-swiper-group__active {
+    position: absolute;
+    top: px2vw(96);
+    left: px2vw(323);
+    font-size: px2vw(12);
+    color: #000;
+  }
   @include layout-desktop-full {
     margin-top: px2vw(160);
     padding: 0;
