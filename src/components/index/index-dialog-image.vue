@@ -31,6 +31,9 @@ export default {
   methods: {
     handleTriggerDialog() {
       this.showDialog = !this.showDialog;
+      if (!this.showDialog) {
+        this.$EVENT_BUS.$emit("CLOSE_DIALOG");
+      }
     },
   },
 };

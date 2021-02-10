@@ -24,12 +24,25 @@
         src="./images/booking-popup-bg.svg"
       ></al-image>
       <al-image
+        v-show="validate.name"
+        class="fixed-form-validate layout-desktop-full booking-validate-name"
+        src="./images/booking-validate.svg"
+      ></al-image>
+      <al-image
+        v-show="validate.telephone"
+        class="fixed-form-validate layout-desktop-full booking-validate-telephone"
+        src="./images/booking-validate.svg"
+      ></al-image>
+
+      <al-image
         v-show="desktopShow"
         class="fixed-form-bg layout-desktop-full booking-desktop-bg"
+        :class="{ active: formFocus }"
         src="./images/booking-fixed-bg-pc.svg"
       ></al-image>
       <al-image
         v-show="desktopShowSuccess"
+        @click="showDesktopBookingForm"
         class="fixed-form-bg layout-desktop-full booking-desktop-success-bg"
         src="./images/booking-success-pc.svg"
       ></al-image>
@@ -93,6 +106,7 @@ export default {
       desktopShow: true,
       desktopShowSuccess: false,
       timer: null,
+      formFocus: false,
     };
   },
   props: {
@@ -119,12 +133,12 @@ export default {
           : this.triggerPopup();
       } else {
         this.formFocus = true;
-        clearTimeout(this.timer)
-        this.timer = null
+        clearTimeout(this.timer);
+        this.timer = null;
         this.timer = setTimeout(() => {
           // TODO
           this.formFocus = false;
-        });
+        }, 5e3);
       }
     });
   },
@@ -206,6 +220,10 @@ export default {
     handleCloseMask() {
       this.showPopup = false;
       this.showSuccessPopup = false;
+    },
+    showDesktopBookingForm() {
+      this.desktopShow = true;
+      this.desktopShowSuccess = false;
     },
   },
 };
@@ -303,6 +321,18 @@ export default {
       font-size: px2vw(28);
       color: transparent;
       background: transparent;
+    }
+    .fixed-form-validate {
+      position: absolute;
+      width: px2vw(270);
+      height: px2vw(80);
+      bottom: px2vw(100);
+    }
+    .booking-validate-name {
+      left: px2vw(635);
+    }
+    .booking-validate-telephone {
+      right: px2vw(550);
     }
   }
 }

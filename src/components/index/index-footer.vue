@@ -25,14 +25,23 @@
       <div class="footer-icon footer-pub">
         <p class="icon-copy-right">© 2020 SINGO.</p>
         <div class="icon-channel footer-pub">
-          <a href="https://weibo.com/xingjienb?sudaref=www.xingjiesj.com&is_all=1" target="_blank" class="channel-svg">
+          <a
+            href="https://weibo.com/xingjienb?sudaref=www.xingjiesj.com&is_all=1"
+            target="_blank"
+            class="channel-svg"
+          >
             <al-icon name="weibo"></al-icon>
+            <!-- <al-icon name="weibo"></al-icon> -->
           </a>
           <div class="channel-svg" @click="handleShowCode('wechat')">
-            <al-icon name="wechat"></al-icon>
+            <al-icon
+              :name="activeCode !== 'wechat' ? 'wechat' : 'wechatActive'"
+            ></al-icon>
           </div>
           <div class="channel-svg" @click="handleShowCode('tiktok')">
-            <al-icon name="tiktok"></al-icon>
+            <al-icon
+              :name="activeCode !== 'tiktok' ? 'tiktok' : 'tiktokActive'"
+            ></al-icon>
           </div>
         </div>
       </div>
@@ -70,7 +79,13 @@ export default {
         "全球采集",
         "关于星杰",
       ],
+      activeCode: "",
     };
+  },
+  mounted() {
+    this.$EVENT_BUS.$on("CLOSE_DIALOG", () => {
+      this.handleCloseDialog();
+    });
   },
   methods: {
     scrollToTop() {
@@ -80,9 +95,13 @@ export default {
         document.querySelector(".inner-scroll").scrollTop = 0;
       }
     },
-    handleShowCode(name){
-      this.$EVENT_BUS.$emit('SHOW_DIALOG',name)
-    }
+    handleShowCode(name) {
+      this.$EVENT_BUS.$emit("SHOW_DIALOG", name);
+      this.activeCode = name;
+    },
+    handleCloseDialog() {
+      this.activeCode = "";
+    },
   },
 };
 </script>

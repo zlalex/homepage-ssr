@@ -6,14 +6,20 @@
     <colorful-text class="layout-desktop-full index-title">
       EXPO OF INTERIOR DESIGN TREND
     </colorful-text>
-    <div class="index-header-menu">
+    <div class="index-header-menu" @click="handleShowMenu">
       <al-icon name="menu"></al-icon>
     </div>
   </div>
 </template>
 <script>
 // TODO
-export default {};
+export default {
+  methods: {
+    handleShowMenu() {
+      this.$EVENT_BUS.$emit("SHOW_MENU");
+    },
+  },
+};
 </script>
 <style lang="scss">
 .component-index-header {

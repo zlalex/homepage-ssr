@@ -15,6 +15,8 @@ import footerBack from './icon-footer-back.svg'
 import arrowSimple from './icon-arrow-simple.svg';
 import time from './icon-time.png';
 import telephone from './icon-telephone.png';
+import close from './icon-close.svg';
+import menuLogo from './icon-menu-logo.svg'
 
 export default {
   logo,
@@ -32,5 +34,7 @@ export default {
   telephone,
   tiktokActive,
   weiboActive,
-  wechatActive
+  wechatActive,
+  close,
+  menuLogo
 }
