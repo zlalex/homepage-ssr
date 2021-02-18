@@ -245,13 +245,44 @@ export default {
         "./images/fashion-swiper-17.jpg",
         "./images/fashion-swiper-18.jpg",
       ],
-      fashionDesktopDetail: [
-        "./images/fashion-swiper-pc-1.jpg",
-        "./images/fashion-swiper-pc-2.jpg",
-        "./images/fashion-swiper-pc-3.jpg",
-        "./images/fashion-swiper-pc-4.jpg",
-        "./images/fashion-swiper-pc-5.jpg",
+      fullFashionDesktopDetail: [
+        [
+          "./images/fashion-swiper-pc-1.jpg",
+          "./images/fashion-swiper-pc-2.jpg",
+          "./images/fashion-swiper-pc-3.jpg",
+          "./images/fashion-swiper-pc-4.jpg",
+          "./images/fashion-swiper-pc-5.jpg",
+        ],
+        [
+          "./images/fashion-swiper-pc-1.jpg",
+          "./images/fashion-swiper-pc-2.jpg",
+          "./images/fashion-swiper-pc-3.jpg",
+          "./images/fashion-swiper-pc-4.jpg",
+          "./images/fashion-swiper-pc-5.jpg",
+        ],
+        [
+          "./images/fashion-swiper-pc-1.jpg",
+          "./images/fashion-swiper-pc-2.jpg",
+          "./images/fashion-swiper-pc-3.jpg",
+          "./images/fashion-swiper-pc-4.jpg",
+          "./images/fashion-swiper-pc-5.jpg",
+        ],
+        [
+          "./images/fashion-swiper-pc-1.jpg",
+          "./images/fashion-swiper-pc-2.jpg",
+          "./images/fashion-swiper-pc-3.jpg",
+          "./images/fashion-swiper-pc-4.jpg",
+          "./images/fashion-swiper-pc-5.jpg",
+        ],
+        [
+          "./images/fashion-swiper-pc-1.jpg",
+          "./images/fashion-swiper-pc-2.jpg",
+          "./images/fashion-swiper-pc-3.jpg",
+          "./images/fashion-swiper-pc-4.jpg",
+          "./images/fashion-swiper-pc-5.jpg",
+        ]
       ],
+      fashionDesktopDetail: [],
     };
   },
   computed: {
@@ -284,6 +315,9 @@ export default {
         index = 0;
       }
       return this.fashionDesktopDetail[index];
+    },
+    fashionDesktopDetail() {
+      return this.fullFashionDesktopDetail[this.fashionTabActive];
     },
   },
   mounted() {
